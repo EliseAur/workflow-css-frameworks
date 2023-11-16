@@ -22,6 +22,8 @@ export function search(query, posts) {
     }
 }
 
+//test comment
+
 export function sortPostsByAuthor(posts, postsAZ = true) {
     return posts.slice().sort((a, b) => {
         const authorA = a.author.name.toLowerCase();
