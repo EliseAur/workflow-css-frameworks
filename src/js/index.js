@@ -5,6 +5,8 @@ import * as listeners from "./handlers/index.js";
 const path = location.pathname;
 console.log(path);
 
+listeners.setLogoutFormListener();
+
 switch (location.pathname) {
     case "/":
     case "/index.html":

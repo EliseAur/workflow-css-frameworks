@@ -5,6 +5,7 @@ export * from "./updatePost.js";
 export * from "./renderPost.js";
 export * from "./searchSortPosts.js";
 export * from "./removePost.js";
+export * from "./logout.js";
 
 // import { search, updateFeedWithSearchResults } from "./searchPosts.js";
 // export { search, updateFeedWithSearchResults };
