@@ -7,8 +7,9 @@ const method = "post";
 // console.log("/auth/login.js running");
 
 export async function login(profile) {
-    const loginURL = API_SOCIAL_URL + action;
-    // console.log("This is the login URL:", loginURL);
+    const loginURL = `${API_SOCIAL_URL}${action}?_count=true`;
+    // API_SOCIAL_URL + action;
+    console.log("This is the login URL:", loginURL);
 
     const body = JSON.stringify(profile);
 

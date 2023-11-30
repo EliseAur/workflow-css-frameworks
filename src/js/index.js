@@ -26,6 +26,7 @@ switch (location.pathname) {
         break;
     case "/profile/":
     case "/profile/index.html":
+        listeners.renderProfileDetails();
         listeners.renderPostsInFeed();
         break;
     case "/post/create/":

@@ -24,13 +24,32 @@ export async function renderPostDetails() {
 export async function renderPostsInFeed() {
     const posts = await postMethods.getPosts();
     //getting the goodPosts with title and media from API
-    const goodPosts = postMethods.filterBadPostData(posts);
     const container = document.querySelector("#postList");
     container.innerHTML = "";
-    templates.renderPostTemplates(goodPosts, container);
-    setupSearchFunctionality(goodPosts);
-    setupSortDropdown(goodPosts);
+
+    if (window.location.pathname.includes("profile/index.html") || window.location.pathname.includes("profile/")) {
+        const profilePosts = postMethods.filterPostDataForProfile(posts);
+        console.log(profilePosts);
+        templates.renderPostTemplates(profilePosts, container);
+    } else {
+        const goodPosts = postMethods.filterBadPostData(posts);
+        console.log(goodPosts);
+        templates.renderPostTemplates(goodPosts, container);
+        setupSearchFunctionality(goodPosts);
+        setupSortDropdown(goodPosts);
+    }
 }
+
+// export async function renderPostsInFeed() {
+//     const posts = await postMethods.getPosts();
+//     //getting the goodPosts with title and media from API
+//     const goodPosts = postMethods.filterBadPostData(posts);
+//     const container = document.querySelector("#postList");
+//     container.innerHTML = "";
+//     templates.renderPostTemplates(goodPosts, container);
+//     setupSearchFunctionality(goodPosts);
+//     setupSortDropdown(goodPosts);
+// }
 
 function setupSearchFunctionality(posts) {
     const searchInput = document.querySelector("#search-input");
@@ -57,25 +76,28 @@ function setupSearchFunctionality(posts) {
 function setupSortDropdown(posts) {
     const container = document.querySelector("#postList");
     const sortDropdown = document.querySelector("#sort-posts");
-    sortDropdown.value = "default";
-    sortDropdown.addEventListener("change", handleSortChange);
 
-    function handleSortChange() {
-        const selectedOption = sortDropdown.value;
-        let sortedPosts;
+    if (sortDropdown) {
+        sortDropdown.value = "default";
+        sortDropdown.addEventListener("change", handleSortChange);
 
-        switch (selectedOption) {
-            case "authorAZ":
-                sortedPosts = handlers.sortPostsByAuthor(posts, true);
-                break;
-            case "authorZA":
-                sortedPosts = handlers.sortPostsByAuthor(posts, false);
-                break;
-            case "default":
-            default:
-                sortedPosts = posts;
+        function handleSortChange() {
+            const selectedOption = sortDropdown.value;
+            let sortedPosts;
+
+            switch (selectedOption) {
+                case "authorAZ":
+                    sortedPosts = handlers.sortPostsByAuthor(posts, true);
+                    break;
+                case "authorZA":
+                    sortedPosts = handlers.sortPostsByAuthor(posts, false);
+                    break;
+                case "default":
+                default:
+                    sortedPosts = posts;
+            }
+
+            handlers.updateFeedWithSearchResults(sortedPosts, container);
         }
-
-        handlers.updateFeedWithSearchResults(sortedPosts, container);
     }
 }
