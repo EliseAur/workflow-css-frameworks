@@ -1,4 +1,7 @@
 import * as listeners from "./handlers/index.js";
+import { getProfile } from "./api/auth/profile.js";
+
+getProfile();
 
 //----------------------------------------------------------------------
 // Routing behaviour to make sure the wrong scripts are not running

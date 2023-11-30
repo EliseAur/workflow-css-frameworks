@@ -25,6 +25,7 @@ function templateForProfile(profile) {
         <img src="${profile.avatar}" alt="Profile Picture" class="profile__user-img img-fluid rounded-circle w-50 shadow-sm">
         <h3 class="mb-0 color-secondary">${profile.name}</h3>
         <p class="mb-0">${profile.email}</p>
+        <p class="pt-2 mb-0 fs-5"><span class="fw-bold">Posts: </span>${profile._count.posts}</p>
     `;
 
     // Append profile info to flex container
@@ -32,37 +33,25 @@ function templateForProfile(profile) {
 
     // Create the profile followers area
     const followersArea = document.createElement("div");
-    followersArea.classList.add("profile__follow", "mt-2", "border", "border-white", "p-2", "p-md-3", "mx-2", "mt-2", "mb-0", "d-flex", "align-items-center");
+    followersArea.classList.add("followersArea", "profile__follow", "mt-2", "border", "border-white", "p-2", "p-md-3", "mx-2", "mt-2", "mb-0", "align-items-center");
 
     const followContent = document.createElement("div");
-    followContent.classList.add("text-center", "follow", "mx-auto", "pb-1", "pb-sm-0");
+    followContent.classList.add("followContent", "text-center", "follow", "mx-auto", "pb-1", "pb-sm-0");
 
-    // Check if _count is defined in the profile object
-    if (profile._count) {
-        // Access the followers and following counts
-        const followersCount = profile._count.followers;
-        const followingCount = profile._count.following;
-
-        console.log(followersCount);
-
-        // Add followers details
-        followContent.innerHTML = `
+    // Add followers details
+    followContent.innerHTML = `
         <div class="d-flex justify-content-center">
             <a class="nav-link follow__count p-2 me-1" href="#">
-                <p class="mb-0 fs-4">${followersCount}</p>
+                <p class="mb-0 fs-4">${profile._count.followers}</p>
                 <p class="mb-0">Followers</p>
             </a>
             <a class="nav-link follow__count p-2 ms-1" href="#">
-                <p class="mb-0 fs-4">${followingCount}</p>
+                <p class="mb-0 fs-4">${profile._count.following}</p>
                 <p class="mb-0">Following</p>
             </a>
         </div>
         <button class="btn btn-secondary follow-button mt-2 mt-md-3">Follow</button>
     `;
-    } else {
-        // Handle the case where _count is not defined
-        followContent.innerHTML = "<p>Counts not available</p>";
-    }
 
     // Append followers content to followers area
     followersArea.appendChild(followContent);
