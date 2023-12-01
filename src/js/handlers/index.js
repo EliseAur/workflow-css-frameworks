@@ -7,6 +7,3 @@ export * from "./searchSortPosts.js";
 export * from "./removePost.js";
 export * from "./logout.js";
 export * from "./renderProfile.js";
-
-// import { search, updateFeedWithSearchResults } from "./searchPosts.js";
-// export { search, updateFeedWithSearchResults };

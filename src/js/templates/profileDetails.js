@@ -28,12 +28,13 @@ function templateForProfile(profile) {
         <p class="pt-2 mb-0 fs-5"><span class="fw-bold">Posts: </span>${profile._count.posts}</p>
     `;
 
-    // Append profile info to flex container
-    flexContainer.appendChild(profileInfo);
+    // Create box for followersArea and editArea
+    const editFollowingContainer = document.createElement("div");
+    editFollowingContainer.classList.add("mt-2", "mx-2", "mt-2", "mb-0", "d-flex", "flex-column", "align-items-center");
 
     // Create the profile followers area
     const followersArea = document.createElement("div");
-    followersArea.classList.add("followersArea", "profile__follow", "mt-2", "border", "border-white", "p-2", "p-md-3", "mx-2", "mt-2", "mb-0", "align-items-center");
+    followersArea.classList.add("followersArea", "profile__follow", "border", "border-white", "p-2", "p-md-3", "mb-0", "align-items-center");
 
     const followContent = document.createElement("div");
     followContent.classList.add("followContent", "text-center", "follow", "mx-auto", "pb-1", "pb-sm-0");
@@ -53,11 +54,23 @@ function templateForProfile(profile) {
         <button class="btn btn-secondary follow-button mt-2 mt-md-3">Follow</button>
     `;
 
+    // Add edit area
+    const editArea = document.createElement("div");
+    editArea.classList.add("editArea", "profile__follow", "h-100", "w-100", "mt-2", "border", "border-white", "p-2", "p-md-3", "mb-0", "d-flex", "justify-content-center", "align-items-center");
+
+    // Add edit details
+    const editContent = document.createElement("div");
+    editContent.innerHTML = `<button class="btn btn-secondary edit-button px-4">Edit profile </button>`;
+    editArea.appendChild(editContent);
     // Append followers content to followers area
     followersArea.appendChild(followContent);
 
-    // Append followers area to flex container
-    flexContainer.appendChild(followersArea);
+    // Append profile info to flex container
+    flexContainer.appendChild(profileInfo);
+    flexContainer.appendChild(editFollowingContainer);
+    // Append followers area to editFollowingContainer
+    editFollowingContainer.appendChild(followersArea);
+    editFollowingContainer.appendChild(editArea);
 
     // ... Create and append other sections (profile__follow) similarly ...
 
