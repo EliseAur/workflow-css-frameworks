@@ -31,6 +31,7 @@ export async function renderPostsInFeed() {
         const profilePosts = postMethods.filterPostDataForProfile(posts);
         console.log(profilePosts);
         templates.renderPostTemplates(profilePosts, container);
+        setupSearchFunctionality(profilePosts);
     } else {
         const goodPosts = postMethods.filterBadPostData(posts);
         console.log(goodPosts);
@@ -39,17 +40,6 @@ export async function renderPostsInFeed() {
         setupSortDropdown(goodPosts);
     }
 }
-
-// export async function renderPostsInFeed() {
-//     const posts = await postMethods.getPosts();
-//     //getting the goodPosts with title and media from API
-//     const goodPosts = postMethods.filterBadPostData(posts);
-//     const container = document.querySelector("#postList");
-//     container.innerHTML = "";
-//     templates.renderPostTemplates(goodPosts, container);
-//     setupSearchFunctionality(goodPosts);
-//     setupSortDropdown(goodPosts);
-// }
 
 function setupSearchFunctionality(posts) {
     const searchInput = document.querySelector("#search-input");

@@ -1,18 +1,23 @@
 function templateForProfile(profile) {
     // Create the main container
     const profileDetailsContainer = document.getElementById("profileDetailsContainer");
-    console.log(profileDetailsContainer);
-    profileDetailsContainer.innerHTML = ""; // Clear existing content
+    profileDetailsContainer.innerHTML = "";
 
     // Create the banner box
     const bannerBox = document.createElement("div");
     bannerBox.classList.add("bannerBox", "profile", "pb-4", "text-center");
 
+    // Set the background image
+    bannerBox.style.backgroundImage = `url('${profile.banner}')`;
+    bannerBox.style.backgroundSize = "cover";
+    bannerBox.style.backgroundPosition = "center";
+    bannerBox.style.backgroundRepeat = "no-repeat";
+
     // Create the card container
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("card", "profile__box", "bg-dark", "text-light", "shadow-sm", "col-sm-8", "col-md-7", "col-lg-6", "col-xl-5", "col-xxl-4", "mx-auto", "p-4", "my-5");
 
-    // Create the d-sm-flex container
+    // Create the flex container
     const flexContainer = document.createElement("div");
     flexContainer.classList.add("d-sm-flex");
 
@@ -60,7 +65,7 @@ function templateForProfile(profile) {
 
     // Add edit details
     const editContent = document.createElement("div");
-    editContent.innerHTML = `<button class="btn btn-secondary edit-button px-4">Edit profile </button>`;
+    editContent.innerHTML = `<a class="btn btn-secondary edit-button px-4" href="/profile/edit" >Edit profile </button>`;
     editArea.appendChild(editContent);
     // Append followers content to followers area
     followersArea.appendChild(followContent);
@@ -71,8 +76,6 @@ function templateForProfile(profile) {
     // Append followers area to editFollowingContainer
     editFollowingContainer.appendChild(followersArea);
     editFollowingContainer.appendChild(editArea);
-
-    // ... Create and append other sections (profile__follow) similarly ...
 
     // Append flex container to card container
     cardContainer.appendChild(flexContainer);
