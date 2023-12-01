@@ -15,13 +15,13 @@ const method = "get"; //do not have to write this
 
 export async function getProfile() {
     const getProfileURL = `${API_SOCIAL_URL}${action}?_followers=true&_following=true`;
-    // console.log("Profile URL:", getProfileURL);
+    console.log("Profile URL:", getProfileURL);
 
     try {
         const response = await authFetch(getProfileURL);
         const profile = await response.json();
 
-        // console.log("Profile Details:", profile);
+        console.log("Profile Details:", profile);
         return profile;
     } catch (error) {
         console.error("Error fetching profile:", error);

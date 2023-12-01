@@ -1,7 +1,7 @@
 import * as listeners from "./handlers/index.js";
-import { getProfile } from "./api/auth/profile.js";
+// import { getProfile } from "./api/auth/profile.js";
 
-getProfile();
+// getProfile();
 
 //----------------------------------------------------------------------
 // Routing behaviour to make sure the wrong scripts are not running
@@ -39,6 +39,10 @@ switch (location.pathname) {
     case "/post/edit/":
     case "/post/edit/index.html":
         listeners.setUpdatePostFormListener();
+        break;
+    case "/profile/edit/":
+    case "/profile/edit/index.html":
+        listeners.setUpdateProfileFormListener();
         break;
     default:
 }

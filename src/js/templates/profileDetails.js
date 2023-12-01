@@ -83,10 +83,8 @@ function templateForProfile(profile) {
     // Append card container to banner box
     bannerBox.appendChild(cardContainer);
 
-    // Set banner as background image
-    bannerBox.style.backgroundImage = `url('${profile.banner}')`;
+    // bannerBox.style.backgroundImage = `url('${profile.banner}')`;
 
-    // Append banner box to profile details container
     profileDetailsContainer.appendChild(bannerBox);
 }
 
@@ -95,6 +93,6 @@ export function renderProfileTemplate(profile, parent) {
         console.error("Invalid parent element provided for rendering profile template.");
         return;
     }
-    // Put the template for profile inside the parent
+
     templateForProfile(profile);
 }
