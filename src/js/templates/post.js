@@ -17,7 +17,7 @@ export function postTemplateForFeed(postData) {
 
     if (!postData.author.avatar) {
         // If an avatar link is provided
-        profileImage.src = "/images/default-profile-image.jpg";
+        profileImage.src = "/images/placeholder-profile-img.jpg";
     }
 
     profileImage.alt = "Profile image";
@@ -77,7 +77,14 @@ export function postTemplateForFeed(postData) {
 
     const timeSmall = document.createElement("small");
     timeSmall.className = "timeSmall text-muted text-end";
-    timeSmall.textContent = postData.created;
+    const creationDate = postData.created.replaceAll("-", ".");
+    const dateConverted = creationDate
+        .slice(0, creationDate.length - 14)
+        .split(".")
+        .reverse()
+        .join(".");
+    timeSmall.textContent = dateConverted;
+    // timeSmall.textContent = postData.created;
 
     // This is where the commentArea begin-------------------------------------------------------
     const comments = postData.comments;
@@ -86,7 +93,7 @@ export function postTemplateForFeed(postData) {
     commentContainer.className = "commentContainer";
 
     const commentCount = document.createElement("div");
-    commentCount.className = " ms-1 p-2 w-100 mb-0";
+    commentCount.className = "commentCount ms-1 p-2 w-100 mb-0";
 
     if (comments && comments.length > 0) {
         commentCount.innerHTML = `<i class="bi bi-chat-dots-fill fs-5"></i> ${comments.length}`;
@@ -106,7 +113,7 @@ export function postTemplateForFeed(postData) {
             if (comment.author.avatar) {
                 commentImage.src = comment.author.avatar;
             } else {
-                commentImage.src = "/images/default-profile-image.jpg";
+                commentImage.src = "/images/placeholder-profile-img.jpg";
             }
 
             const commentParagraph = document.createElement("p");
@@ -179,7 +186,8 @@ export function postTemplateDetails(postData) {
 
     if (!postData.author.avatar) {
         // If an avatar link is provided
-        profileImage.src = "/images/default-profile-image.jpg";
+        profileImage.src = "/images/placeholder-profile-img.jpg";
+        // profileImage.src = "https://t3.ftcdn.net/jpg/05/16/27/58/360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg";
     }
 
     profileImage.alt = "Profile image";
@@ -250,8 +258,14 @@ export function postTemplateDetails(postData) {
     //Buttongroup finished---------------------------------------
 
     const timeSmall = document.createElement("small");
-    timeSmall.className = "text-muted text-end";
-    timeSmall.textContent = postData.created;
+    timeSmall.className = "timeSmall text-muted text-end";
+    const creationDate = postData.created.replaceAll("-", ".");
+    const dateConverted = creationDate
+        .slice(0, creationDate.length - 14)
+        .split(".")
+        .reverse()
+        .join(".");
+    timeSmall.textContent = dateConverted;
 
     // This is where the commentArea begin-------------------------------------------------------
     const comments = postData.comments;
@@ -260,7 +274,7 @@ export function postTemplateDetails(postData) {
     commentContainer.className = "commentContainer";
 
     const commentCount = document.createElement("div");
-    commentCount.className = " ms-1 p-2 w-100 mb-0";
+    commentCount.className = " commentCount ms-1 p-2 w-100 mb-0";
 
     if (comments && comments.length > 0) {
         commentCount.innerHTML = `<i class="bi bi-chat-dots-fill fs-5"></i> ${comments.length}`;
@@ -277,7 +291,8 @@ export function postTemplateDetails(postData) {
             if (comment.author.avatar) {
                 commentImage.src = comment.author.avatar;
             } else {
-                commentImage.src = "/images/default-profile-image.jpg";
+                commentImage.src = "/images/placeholder-profile-img.jpg";
+                // commentImage.src = "https://t3.ftcdn.net/jpg/05/16/27/58/360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg";
             }
 
             const commentParagraph = document.createElement("p");
