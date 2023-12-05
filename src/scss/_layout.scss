@@ -38,3 +38,12 @@
 .buttonDiv small {
     grid-column: 4;
 }
+
+.viewMoreButton {
+    max-width: 94px;
+}
+
+.commentCount,
+.reactionsCount {
+    max-width: 50px;
+}

@@ -1,50 +1,61 @@
 function templateForProfile(profile) {
-    // Create the main container
+    const titleElement = document.querySelector("title");
+    if (titleElement) {
+        titleElement.textContent = `${profile.name}'s profile | Stronger together`;
+    }
+
     const profileDetailsContainer = document.getElementById("profileDetailsContainer");
     profileDetailsContainer.innerHTML = "";
 
-    // Create the banner box
     const bannerBox = document.createElement("div");
     bannerBox.classList.add("bannerBox", "profile", "pb-4", "text-center");
-
-    // Set the background image
     bannerBox.style.backgroundImage = `url('${profile.banner}')`;
     bannerBox.style.backgroundSize = "cover";
     bannerBox.style.backgroundPosition = "center";
     bannerBox.style.backgroundRepeat = "no-repeat";
 
-    // Create the card container
     const cardContainer = document.createElement("div");
-    cardContainer.classList.add("card", "profile__box", "bg-dark", "text-light", "shadow-sm", "col-sm-8", "col-md-7", "col-lg-6", "col-xl-5", "col-xxl-4", "mx-auto", "p-4", "my-5");
+    cardContainer.classList.add(
+        "card",
+        "profile__box",
+        "bg-dark",
+        "text-light",
+        "shadow-sm",
+        "col-sm-9",
+        "col-md-7",
+        "col-lg-6",
+        "col-xl-5",
+        "col-xxl-4",
+        "mx-sm-auto",
+        "p-4",
+        "my-5",
+        "mx-2",
+        "d-flex",
+        "align-items-center"
+    );
 
-    // Create the flex container
     const flexContainer = document.createElement("div");
     flexContainer.classList.add("d-sm-flex");
 
-    // Create the profile info section
     const profileInfo = document.createElement("div");
-    profileInfo.classList.add("profile__info", "text-center", "mt-2", "border", "border-white", "p-2", "p-md-3", "m-2", "mb-sm-0");
+    profileInfo.classList.add("profile__info", "d-flex", "flex-column", "justify-content-center", "text-center", "mt-2", "border", "border-white", "p-2", "p-md-3", "m-2", "mb-sm-0");
 
-    // Add user details
     profileInfo.innerHTML = `
-        <img src="${profile.avatar}" alt="Profile Picture" class="profile__user-img img-fluid rounded-circle w-50 shadow-sm">
+        <img src="${profile.avatar}" alt="Profile Picture" class="profile__user-img img-fluid rounded-circle w-50 h-50 shadow-sm mx-auto">
         <h3 class="mb-0 color-secondary">${profile.name}</h3>
         <p class="mb-0">${profile.email}</p>
         <p class="pt-2 mb-0 fs-5"><span class="fw-bold">Posts: </span>${profile._count.posts}</p>
     `;
 
-    // Create box for followersArea and editArea
     const editFollowingContainer = document.createElement("div");
     editFollowingContainer.classList.add("mt-2", "mx-2", "mt-2", "mb-0", "d-flex", "flex-column", "align-items-center");
 
-    // Create the profile followers area
     const followersArea = document.createElement("div");
-    followersArea.classList.add("followersArea", "profile__follow", "border", "border-white", "p-2", "p-md-3", "mb-0", "align-items-center");
+    followersArea.classList.add("followersArea", "profile__follow", "border", "border-white", "p-2", "p-md-3", "mb-0", "align-items-center", "w-100");
 
     const followContent = document.createElement("div");
     followContent.classList.add("followContent", "text-center", "follow", "mx-auto", "pb-1", "pb-sm-0");
 
-    // Add followers details
     followContent.innerHTML = `
         <div class="d-flex justify-content-center">
             <a class="nav-link follow__count p-2 me-1" href="#">
@@ -59,32 +70,20 @@ function templateForProfile(profile) {
         <button class="btn btn-secondary follow-button mt-2 mt-md-3">Follow</button>
     `;
 
-    // Add edit area
     const editArea = document.createElement("div");
     editArea.classList.add("editArea", "profile__follow", "h-100", "w-100", "mt-2", "border", "border-white", "p-2", "p-md-3", "mb-0", "d-flex", "justify-content-center", "align-items-center");
 
-    // Add edit details
     const editContent = document.createElement("div");
     editContent.innerHTML = `<a class="btn btn-secondary edit-button px-4" href="/profile/edit" >Edit profile </button>`;
-    editArea.appendChild(editContent);
-    // Append followers content to followers area
-    followersArea.appendChild(followContent);
 
-    // Append profile info to flex container
+    editArea.appendChild(editContent);
+    followersArea.appendChild(followContent);
     flexContainer.appendChild(profileInfo);
     flexContainer.appendChild(editFollowingContainer);
-    // Append followers area to editFollowingContainer
     editFollowingContainer.appendChild(followersArea);
     editFollowingContainer.appendChild(editArea);
-
-    // Append flex container to card container
     cardContainer.appendChild(flexContainer);
-
-    // Append card container to banner box
     bannerBox.appendChild(cardContainer);
-
-    // bannerBox.style.backgroundImage = `url('${profile.banner}')`;
-
     profileDetailsContainer.appendChild(bannerBox);
 }
 
