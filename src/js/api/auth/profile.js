@@ -5,26 +5,29 @@ import { authFetch } from "../authFetch.js";
 const storedUsername = localStorage.getItem("userName");
 const trimmedUsername = storedUsername ? storedUsername.trim().replace(/^"(.*)"$/, "$1") : null;
 
-// Check if the username is available
+// Check if the username is available and handles the case where it is not
 if (!trimmedUsername) {
     console.error("Username not found in local storage.");
-    // Handle the case where the username is not available
 }
 const action = `/profiles/${trimmedUsername}`;
-const method = "get"; //do not have to write this
+const method = "get";
 
 export async function getProfile() {
-    const getProfileURL = `${API_SOCIAL_URL}${action}?_followers=true&_following=true`;
-    console.log("Profile URL:", getProfileURL);
+    const baseURL = API_SOCIAL_URL;
+    const getProfileURL = new URL(`${baseURL}${action}`);
+    getProfileURL.searchParams.set("_followers", true);
+    getProfileURL.searchParams.set("_following", true);
+
+    // console.log("Profile URL:", getProfileURL);
 
     try {
-        const response = await authFetch(getProfileURL);
+        const response = await authFetch(getProfileURL.toString());
         const profile = await response.json();
 
-        console.log("Profile Details:", profile);
+        // console.log("Profile Details:", profile);
         return profile;
     } catch (error) {
         console.error("Error fetching profile:", error);
-        throw error; // Re-throw the error for the calling code to handle
+        throw error;
     }
 }

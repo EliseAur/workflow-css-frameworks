@@ -1,5 +1,3 @@
-// // Post template for post in FEED postList
-
 // Creating view more Button function for posts in feed
 function createVieWMoreButton(postData, buttonDiv) {
     const viewMoreButton = document.createElement("a");
@@ -112,7 +110,6 @@ function createComments(comments, maxComments = 2) {
 
 function createCommentArea(postData, cardBodyDiv) {
     const comments = postData.comments;
-    console.log("Creating comment area for post:", comments);
 
     if (comments && comments.length > 0) {
         //If path is true, show all comments, If path is false - show at most 2 comments

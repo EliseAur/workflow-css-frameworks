@@ -2,14 +2,17 @@ import { API_SOCIAL_URL } from "../constants.js";
 import { authFetch } from "../authFetch.js";
 
 const action = "/posts";
-const method = "get"; //do not have to write this
+const method = "get";
 
 export async function getPosts() {
-    const getPostURL = `${API_SOCIAL_URL}${action}?_author=true&_comments=true&_reactions=true`;
+    const baseURL = API_SOCIAL_URL;
+    const getPostURL = new URL(`${baseURL}${action}`);
+    getPostURL.searchParams.set("_author", true);
+    getPostURL.searchParams.set("_comments", true);
+    getPostURL.searchParams.set("_reactions", true);
 
-    const response = await authFetch(getPostURL);
+    const response = await authFetch(getPostURL.toString());
 
-    // console.log(await response.json());
     return await response.json();
 }
 
@@ -17,10 +20,14 @@ export async function getPost(id) {
     if (!id) {
         throw new Error("Get requires a postID");
     }
-    const getPostURL = `${API_SOCIAL_URL}${action}/${id}?_author=true&_comments=true&_reactions=true`;
 
-    const response = await authFetch(getPostURL);
+    const baseURL = API_SOCIAL_URL;
+    const getPostURL = new URL(`${baseURL}${action}/${id}`);
+    getPostURL.searchParams.set("_author", true);
+    getPostURL.searchParams.set("_comments", true);
+    getPostURL.searchParams.set("_reactions", true);
 
-    // console.log(await response.json());
+    const response = await authFetch(getPostURL.toString());
+
     return await response.json();
 }
