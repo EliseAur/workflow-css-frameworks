@@ -5,26 +5,38 @@ import { authFetch } from "../authFetch.js";
 const storedUsername = localStorage.getItem("userName");
 const trimmedUsername = storedUsername ? storedUsername.trim().replace(/^"(.*)"$/, "$1") : null;
 
-// Check if the username is available and handles the case where it is not
 if (!trimmedUsername) {
     console.error("Username not found in local storage.");
 }
+
 const action = `/profiles/${trimmedUsername}`;
 const method = "get";
 
+/**
+ * Fetches the user profile information including followers and following details.
+ *
+ * @throws {Error} Throws an error if there is an issue fetching the profile.
+ *
+ * @returns {Promise<Object>} A promise that resolves to the user profile object.
+ *
+ * @example
+ * // Call the getProfile function to fetch the user profile.
+ * try {
+ *   const userProfile = await getProfile();
+ *   console.log("User profile:", userProfile);
+ * } catch (error) {
+ *   console.error("Error fetching profile:", error.message);
+ * }
+ */
 export async function getProfile() {
     const baseURL = API_SOCIAL_URL;
     const getProfileURL = new URL(`${baseURL}${action}`);
     getProfileURL.searchParams.set("_followers", true);
     getProfileURL.searchParams.set("_following", true);
 
-    // console.log("Profile URL:", getProfileURL);
-
     try {
         const response = await authFetch(getProfileURL.toString());
         const profile = await response.json();
-
-        // console.log("Profile Details:", profile);
         return profile;
     } catch (error) {
         console.error("Error fetching profile:", error);
