@@ -1,4 +1,15 @@
-// Creating view more Button function for posts in feed
+/**
+ * Creates a "View more" button element for a post in the feed.
+ * The button links to the detailed view of the post.
+ *
+ * @param {Object} postData - The data of the post.
+ * @param {HTMLElement} buttonDiv - The container to which the button is appended.
+ *
+ * @returns {void}
+ *
+ * @example
+ * createVieWMoreButton(postData, buttonDiv);
+ */
 function createVieWMoreButton(postData, buttonDiv) {
     const viewMoreButton = document.createElement("a");
     viewMoreButton.href = `/post/index.html?id=${postData.id}`;
@@ -7,7 +18,18 @@ function createVieWMoreButton(postData, buttonDiv) {
     buttonDiv.appendChild(viewMoreButton);
 }
 
-// Create updateButton function for post details page
+/**
+ * Creates an "Update" button element for a post on the post details page.
+ * The button links to the post editing page.
+ *
+ * @param {Object} postData - The data of the post.
+ * @param {HTMLElement} buttonDiv - The container to which the button is appended.
+ *
+ * @returns {void}
+ *
+ * @example
+ * createUpdateButton(postData, buttonDiv);
+ */
 function createUpdateButton(postData, buttonDiv) {
     const updateButton = document.createElement("a");
     updateButton.id = "updatePostButton";
@@ -17,6 +39,16 @@ function createUpdateButton(postData, buttonDiv) {
     buttonDiv.appendChild(updateButton);
 }
 
+/**
+ * Creates a "Remove" button element for a post on the post details page.
+ *
+ * @param {HTMLElement} buttonDiv - The container to which the button is appended.
+ *
+ * @returns {void}
+ *
+ * @example
+ * createRemoveButton(buttonDiv);
+ */
 function createRemoveButton(buttonDiv) {
     const removeButton = document.createElement("button");
     removeButton.className = "btn btn-sm btn-primary ms-2";
@@ -25,7 +57,17 @@ function createRemoveButton(buttonDiv) {
     buttonDiv.appendChild(removeButton);
 }
 
-//Creating commentCount-function:
+/**
+ * Creates an element displaying the count of comments for a post.
+ *
+ * @param {Object} postData - The data of the post.
+ * @param {HTMLElement} buttonDiv - The container to which the count element is appended.
+ *
+ * @returns {void}
+ *
+ * @example
+ * createCommentCount(postData, buttonDiv);
+ */
 function createCommentCount(postData, buttonDiv) {
     const comments = postData.comments;
     const commentCount = document.createElement("div");
@@ -40,7 +82,17 @@ function createCommentCount(postData, buttonDiv) {
     buttonDiv.appendChild(commentCount);
 }
 
-//Creating reactionCount-function:
+/**
+ * Creates an element displaying the count of reactions for a post.
+ *
+ * @param {Object} postData - The data of the post.
+ * @param {HTMLElement} buttonDiv - The container to which the count element is appended.
+ *
+ * @returns {void}
+ *
+ * @example
+ * createReactionCount(postData, buttonDiv);
+ */
 function createReactionCount(postData, buttonDiv) {
     const reactions = postData.reactions;
     const reactionCount = document.createElement("div");
@@ -55,7 +107,17 @@ function createReactionCount(postData, buttonDiv) {
     buttonDiv.appendChild(reactionCount);
 }
 
-// Creating timePostWasCreated function
+/**
+ * Creates an element displaying the time when the post was created.
+ *
+ * @param {Object} postData - The data of the post.
+ * @param {HTMLElement} buttonDiv - The container to which the time element is appended.
+ *
+ * @returns {void}
+ *
+ * @example
+ * timePostWasCreated(postData, buttonDiv);
+ */
 function timePostWasCreated(postData, buttonDiv) {
     const timeSmall = document.createElement("small");
     timeSmall.className = "timeSmall text-muted text-end ms-auto";
@@ -69,7 +131,16 @@ function timePostWasCreated(postData, buttonDiv) {
     buttonDiv.appendChild(timeSmall);
 }
 
-//Creating elements for comments
+/**
+ * Creates a div element containing the avatar image and body of a comment.
+ *
+ * @param {Object} comment - The data of the comment.
+ *
+ * @returns {HTMLDivElement} - The created comment div.
+ *
+ * @example
+ * createCommentDiv(comment);
+ */
 function createCommentDiv(comment) {
     const commentDiv = document.createElement("div");
     commentDiv.className = "commentDiv d-flex mb-3";
@@ -92,7 +163,23 @@ function createCommentDiv(comment) {
     return commentDiv;
 }
 
-// Creating comments max=2 for posts in feed and show all posts for post in post detail page
+/**
+ * Creates a container for displaying comments for a post.
+ * By default, it displays a maximum of 2 comments for posts in the feed.
+ * For the post detail page, it displays all comments.
+ *
+ * @param {Array<Object>} comments - The array of comments for the post.
+ * @param {number} [maxComments=2] - The maximum number of comments to display (for posts in the feed).
+ *
+ * @returns {HTMLDivElement} - The created comment container.
+ *
+ * @example
+ * // Display all comments for a post on the post detail page
+ * const allCommentsContainer = createComments(comments);
+ *
+ * // Display at most 2 comments for a post in the feed
+ * const limitedCommentsContainer = createComments(comments, 2);
+ */
 function createComments(comments, maxComments = 2) {
     const commentContainer = document.createElement("div");
     commentContainer.className = "commentContainer";
@@ -108,18 +195,55 @@ function createComments(comments, maxComments = 2) {
     return commentContainer;
 }
 
+/**
+ * Creates and appends a comment area to the card body.
+ * The comment area includes the container for displaying comments based on the post data.
+ *
+ * @param {Object} postData - The data of the post.
+ * @param {HTMLElement} cardBodyDiv - The container to which the comment area is appended.
+ *
+ * @returns {void}
+ *
+ * @example
+ * // Create and append comment area for a post
+ * createCommentArea(postData, cardBodyDiv);
+ */
 function createCommentArea(postData, cardBodyDiv) {
     const comments = postData.comments;
 
     if (comments && comments.length > 0) {
-        //If path is true, show all comments, If path is false - show at most 2 comments
+        /**
+         * Creates a comment container based on the path. If the path includes "/post/",
+         * it shows all comments; otherwise, it shows at most 2 comments.
+         */
         const commentContainer = window.location.pathname.includes("/post/") ? createComments(comments) : createComments(comments, 2);
 
         cardBodyDiv.appendChild(commentContainer);
     }
 }
 
-// creates template for post for feed, profile and post details page
+/**
+ * Creates a template for displaying posts in the feed, profile, and post details page.
+ *
+ * @param {Object} postData - The data of the post.
+ * @returns {HTMLDivElement} - The created post template as a HTMLDivElement.
+ *
+ * @example
+ * // Example usage:
+ * const post = postTemplate({
+ *   author: {
+ *     name: "John Doe",
+ *     avatar: "path/to/avatar.jpg",
+ *   },
+ *   title: "Post Title",
+ *   body: "Post content...",
+ *   media: "path/to/media.jpg",
+ *   comments: [...],
+ *   reactions: [...],
+ *   created: "2023-12-01T12:34:56.789Z",
+ * });
+ * document.body.appendChild(post);
+ */
 export function postTemplate(postData) {
     const post = document.createElement("div");
     post.className = "card feed-post col-12 mb-3 pb-3";
@@ -134,10 +258,10 @@ export function postTemplate(postData) {
     profileImageDiv.className = "profileImageDiv mx-2 mb-2";
 
     const profileImage = document.createElement("img");
-    profileImage.src = postData.author.avatar;
 
-    if (!postData.author.avatar) {
-        // If an avatar link is provided
+    if (postData.author.avatar) {
+        profileImage.src = postData.author.avatar;
+    } else {
         profileImage.src = "/images/placeholder-profile-img.jpg";
     }
 
@@ -205,7 +329,6 @@ export function postTemplate(postData) {
     timePostWasCreated(postData, buttonDiv);
     createCommentArea(postData, commentContainer);
 
-    //Add comment input area
     const addCommentDiv = document.createElement("div");
     addCommentDiv.className = "addCommentDiv add-comment input-group shadow-sm mb-1";
 
@@ -239,19 +362,29 @@ export function postTemplate(postData) {
     return post;
 }
 
+/**
+ * Renders a single post template and appends it to the specified parent element.
+ *
+ * @param {Object} postData - The data of the post to render.
+ * @param {Element} parent - The parent element to which the post template will be appended.
+ *
+ */
 export function renderPostTemplate(postData, parent) {
     if (!parent || !(parent instanceof Element)) {
         console.error("Invalid parent element provided for rendering post template.");
         return;
     }
 
-    const postElement = postTemplate(postData);
-    console.log("postElement:", postElement);
-
-    // Put the post template inside the parent
     parent.append(postTemplate(postData));
 }
 
+/**
+ * Renders multiple post templates for a list of post data and appends them to the specified parent element.
+ *
+ * @param {Array<Object>} postDataList - The list of post data to render.
+ * @param {Element} parent - The parent element to which the post templates will be appended.
+ *
+ */
 export function renderPostTemplates(postDataList, parent) {
     const postElements = postDataList.map((postData) => {
         const postElement = postTemplate(postData);

@@ -2,11 +2,31 @@ import * as templates from "../templates/index.js";
 import * as postMethods from "../api/posts/index.js";
 import * as handlers from "./index.js";
 
+/**
+ * Retrieves the post ID from the URL query parameters.
+ *
+ * @returns {string|null} The post ID or null if not found.
+ *
+ * @example
+ * // Call 'getPostIdFromUrl' to get the post ID from the URL:
+ * const postId = getPostIdFromUrl();
+ * console.log(postId); // The post ID or null
+ */
 function getPostIdFromUrl() {
     const urlParams = new URLSearchParams(location.search);
     return urlParams.get("id");
 }
 
+/**
+ * Renders the details of a specific post and sets up functionality
+ * for removing the post if the current user is the author.
+ *
+ * @returns {void}
+ *
+ * @example
+ * // Call 'renderPostDetails' to render details of a specific post:
+ * await renderPostDetails();
+ */
 export async function renderPostDetails() {
     const postId = getPostIdFromUrl();
     console.log(postId);
@@ -21,26 +41,45 @@ export async function renderPostDetails() {
     }
 }
 
+/**
+ * Renders posts in the feed, filtering and sorting as needed,
+ * and sets up search and sort functionality.
+ *
+ * @returns {void}
+ *
+ * @example
+ * // Call 'renderPostsInFeed' to render posts in the feed:
+ * await renderPostsInFeed();
+ */
 export async function renderPostsInFeed() {
     const posts = await postMethods.getPosts();
-    //getting the goodPosts with title and media from API
     const container = document.querySelector("#postList");
     container.innerHTML = "";
 
     if (window.location.pathname.includes("profile/index.html") || window.location.pathname.includes("profile/")) {
         const profilePosts = postMethods.filterPostDataForProfile(posts);
-        console.log(profilePosts);
         templates.renderPostTemplates(profilePosts, container);
         setupSearchFunctionality(profilePosts);
     } else {
         const goodPosts = postMethods.filterBadPostData(posts);
-        console.log(goodPosts);
         templates.renderPostTemplates(goodPosts, container);
         setupSearchFunctionality(goodPosts);
         setupSortDropdown(goodPosts);
     }
 }
 
+/**
+ * Sets up search functionality for filtering posts based on user input.
+ * Also sets up event listeners for search input and form submission.
+ *
+ * @param {Array} posts - The array of posts to be searched.
+ *
+ * @returns {void}
+ *
+ * @example
+ * // Call 'setupSearchFunctionality' to set up search functionality:
+ * setupSearchFunctionality(posts);
+ */
 function setupSearchFunctionality(posts) {
     const searchInput = document.querySelector("#search-input");
     const searchForm = document.querySelector("#search-form");
@@ -63,6 +102,18 @@ function setupSearchFunctionality(posts) {
     }
 }
 
+/**
+ * Sets up sorting functionality for sorting posts based on user selection.
+ * Also sets up an event listener for changes in the sort dropdown.
+ *
+ * @param {Array} posts - The array of posts to be sorted.
+ *
+ * @returns {void}
+ *
+ * @example
+ * // Call 'setupSortDropdown' to set up sorting functionality:
+ * setupSortDropdown(posts);
+ */
 function setupSortDropdown(posts) {
     const container = document.querySelector("#postList");
     const sortDropdown = document.querySelector("#sort-posts");

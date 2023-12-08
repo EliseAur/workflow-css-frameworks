@@ -33,10 +33,13 @@ export async function getProfile() {
     const getProfileURL = new URL(`${baseURL}${action}`);
     getProfileURL.searchParams.set("_followers", true);
     getProfileURL.searchParams.set("_following", true);
+    getProfileURL.searchParams.set("_count", true);
+    getProfileURL.searchParams.set("_posts", true);
 
     try {
         const response = await authFetch(getProfileURL.toString());
         const profile = await response.json();
+        console.log(profile);
         return profile;
     } catch (error) {
         console.error("Error fetching profile:", error);

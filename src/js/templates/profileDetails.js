@@ -1,4 +1,26 @@
+/**
+ * Creates and renders a profile template for the profile page.
+ * Sets the page title, banner, avatar, user information, followers/following counts,
+ * and provides options to see followers and edit the profile.
+ *
+ * @param {Object} profile - The profile data to render.
+ *
+ * @example
+ * // Example usage:
+ * templateForProfile({
+ *   name: "John Doe",
+ *   email: "john@example.com",
+ *   avatar: "path/to/avatar.jpg",
+ *   banner: "path/to/banner.jpg",
+ *   _count: {
+ *     posts: 10,
+ *     followers: 100,
+ *     following: 50,
+ *   },
+ * });
+ */
 function templateForProfile(profile) {
+    console.log(profile);
     const titleElement = document.querySelector("title");
     if (titleElement) {
         titleElement.textContent = `${profile.name}'s profile | Stronger together`;
@@ -87,6 +109,31 @@ function templateForProfile(profile) {
     profileDetailsContainer.appendChild(bannerBox);
 }
 
+/**
+ * Renders the profile template for the given profile and appends it to the specified parent container.
+ * If the parent container is not a valid HTML element, an error is logged, and rendering is aborted.
+ *
+ * @param {Object} profile - The profile data to be rendered.
+ * @param {Element} parent - The parent container where the profile template will be appended.
+ *
+ * @returns {void}
+ *
+ * @example
+ * // Example usage:
+ * const userProfile = {
+ *   name: "John Doe",
+ *   email: "john@example.com",
+ *   avatar: "path/to/avatar.jpg",
+ *   banner: "path/to/banner.jpg",
+ *   _count: {
+ *     posts: 10,
+ *     followers: 100,
+ *     following: 50,
+ *   },
+ * };
+ * const parentContainer = document.getElementById("profileDetailsContainer");
+ * renderProfileTemplate(userProfile, parentContainer);
+ */
 export function renderProfileTemplate(profile, parent) {
     if (!parent || !(parent instanceof Element)) {
         console.error("Invalid parent element provided for rendering profile template.");

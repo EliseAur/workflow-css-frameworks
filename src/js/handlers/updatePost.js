@@ -1,12 +1,17 @@
-// import { updatePost } from "../api/posts/update.js";
 import { getPost, updatePost } from "../api/posts/index.js";
 
-//use this as a teemplate to write other eventlisteners
-
+/**
+ * Sets up the form listener for updating a post. Retrieves the post details,
+ * populates the form fields, and handles the form submission to update the post.
+ *
+ * @returns {void}
+ *
+ * @example
+ * setUpdatePostFormListener();
+ */
 export async function setUpdatePostFormListener() {
     const form = document.querySelector("#editPost");
     const container = document.querySelector("#editPostContainer");
-    //console.log(form);
 
     const url = new URL(location.href);
     const id = url.searchParams.get("id");
@@ -29,7 +34,8 @@ export async function setUpdatePostFormListener() {
         form.addEventListener("submit", (event) => {
             event.preventDefault();
             const form = event.target;
-            const formData = new FormData(form); //provide the form data to this constructor
+            //provide the form data to this constructor
+            const formData = new FormData(form);
             const post = Object.fromEntries(formData.entries());
 
             const tagsInput = form.querySelector("input[name='tags']").value;
@@ -37,9 +43,8 @@ export async function setUpdatePostFormListener() {
             post.tags = tagsArray;
 
             post.id = id;
-            console.log("This is the updated post", post);
+            // console.log("This is the updated post", post);
 
-            // Send it to the API
             updatePost(post);
 
             container.appendChild(form);

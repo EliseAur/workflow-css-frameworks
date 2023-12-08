@@ -1,24 +1,30 @@
 import { login } from "../api/auth/login.js";
 
-//use this as a teemplate to write other eventlisteners
-
+/**
+ * Sets up an event listener for the login form.
+ * When the form is submitted, it prevents the default form submission,
+ * collects the user's profile information from the form,
+ * and then calls the login function with the profile data.
+ *
+ * @returns {void}
+ *
+ * @example
+ * // Add the login form to your HTML with the id "loginForm".
+ * // Then call this function to set up the event listener.
+ * setLoginFormListener();
+ */
 export function setLoginFormListener() {
     const form = document.querySelector("#loginForm");
 
-    //this says: proceed if there is a form. If it fails to find the loginform it won't do anything
     if (form) {
         form.addEventListener("submit", (event) => {
             event.preventDefault();
             const form = event.target;
-            const formData = new FormData(form); //provide the form data to this constructor
+            const formData = new FormData(form);
 
-            // const profile = formData.entries() //Loop through an object an gives you the key AND the value. Gives you an array with key and value.
-            //want an object, not an array, we can say
             const profile = Object.fromEntries(formData.entries());
-            console.log("This is the users profile info when logging in", profile);
+            // console.log("This is the users profile info when logging in", profile);
 
-            //Now we have collected the profile data.
-            //Send it to the API
             login(profile);
         });
     }

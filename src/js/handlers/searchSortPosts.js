@@ -1,5 +1,18 @@
 import * as templates from "../templates/index.js";
 
+/**
+ * Filters the posts based on the provided search query. It checks for matches
+ * in post titles, bodies, authors, and tags. Returns an array of posts that match
+ * the search criteria.
+ *
+ * @param {string} query - The search query.
+ * @param {Array} posts - The array of posts to search through.
+ * @returns {Array} - An array of posts that match the search criteria.
+ *
+ * @example
+ * const searchResults = search("example", posts);
+ * console.log(searchResults);
+ */
 export function search(query, posts) {
     return posts.filter((post) => {
         return titleMatches(query, post) || bodyMatches(query, post) || authorMatches(query, post) || tagMatches(query, post);
@@ -22,8 +35,18 @@ export function search(query, posts) {
     }
 }
 
-//test comment
-
+/**
+ * Sorts the posts alphabetically by author name in ascending or descending order.
+ *
+ * @param {Array} posts - The array of posts to sort.
+ * @param {boolean} [postsAZ=true] - If true, sorts posts in ascending order (A to Z),
+ *                                  if false, sorts posts in descending order (Z to A).
+ * @returns {Array} - An array of posts sorted by author name.
+ *
+ * @example
+ * const sortedPosts = sortPostsByAuthor(posts, true);
+ * console.log(sortedPosts);
+ */
 export function sortPostsByAuthor(posts, postsAZ = true) {
     return posts.slice().sort((a, b) => {
         const authorA = a.author.name.toLowerCase();
@@ -37,6 +60,16 @@ export function sortPostsByAuthor(posts, postsAZ = true) {
     });
 }
 
+/**
+ * Updates the feed container with the search results by rendering the post templates.
+ *
+ * @param {Array} results - An array of posts that match the search criteria.
+ * @param {HTMLElement} container - The container element to update with the search results.
+ * @returns {void}
+ *
+ * @example
+ * updateFeedWithSearchResults(searchResults, document.querySelector("#postList"));
+ */
 export function updateFeedWithSearchResults(results, container) {
     container.innerHTML = "";
 
