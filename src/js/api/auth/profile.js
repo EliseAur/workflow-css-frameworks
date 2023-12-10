@@ -13,7 +13,7 @@ const action = `/profiles/${trimmedUsername}`;
 const method = "get";
 
 /**
- * Fetches the user profile information including followers and following details.
+ * Fetches the user profile information including followers and following details, post count and all posts created by the user logged in.
  *
  * @throws {Error} Throws an error if there is an issue fetching the profile.
  *
@@ -39,7 +39,6 @@ export async function getProfile() {
     try {
         const response = await authFetch(getProfileURL.toString());
         const profile = await response.json();
-        console.log(profile);
         return profile;
     } catch (error) {
         console.error("Error fetching profile:", error);

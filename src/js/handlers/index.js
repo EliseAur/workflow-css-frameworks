@@ -8,3 +8,4 @@ export * from "./removePost.js";
 export * from "./logout.js";
 export * from "./renderProfile.js";
 export * from "./updateProfile.js";
+export * from "./createComment.js";

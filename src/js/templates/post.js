@@ -181,18 +181,18 @@ function createCommentDiv(comment) {
  * const limitedCommentsContainer = createComments(comments, 2);
  */
 function createComments(comments, maxComments = 2) {
-    const commentContainer = document.createElement("div");
-    commentContainer.className = "commentContainer";
+    const commentContainerForComments = document.createElement("div");
+    commentContainerForComments.className = "commentContainerForComments";
 
     const maxToShow = window.location.pathname.includes("/post/") ? comments.length : Math.min(maxComments, comments.length);
 
     for (let i = 0; i < maxToShow; i++) {
         const comment = comments[i];
         const commentDiv = createCommentDiv(comment);
-        commentContainer.appendChild(commentDiv);
+        commentContainerForComments.appendChild(commentDiv);
     }
 
-    return commentContainer;
+    return commentContainerForComments;
 }
 
 /**
@@ -206,20 +206,35 @@ function createComments(comments, maxComments = 2) {
  *
  * @example
  * // Create and append comment area for a post
+ * const postData = { id: 1, comments: [{ id: 123, body: "This is a comment" }]};
  * createCommentArea(postData, cardBodyDiv);
  */
 function createCommentArea(postData, cardBodyDiv) {
     const comments = postData.comments;
-
     if (comments && comments.length > 0) {
-        /**
-         * Creates a comment container based on the path. If the path includes "/post/",
-         * it shows all comments; otherwise, it shows at most 2 comments.
-         */
-        const commentContainer = window.location.pathname.includes("/post/") ? createComments(comments) : createComments(comments, 2);
-
-        cardBodyDiv.appendChild(commentContainer);
+        const commentContainerOuter = createComments(comments);
+        cardBodyDiv.appendChild(commentContainerOuter);
     }
+
+    const addCommentForm = document.createElement("form");
+    addCommentForm.className = "addCommentForm add-comment input-group shadow-sm mb-1";
+    addCommentForm.id = `addCommentForm-${postData.id}`;
+
+    const commentButton = document.createElement("button");
+    commentButton.id = "button-addon1";
+    commentButton.className = "commentButton btn btn-secondary";
+    commentButton.innerHTML = `<i class="bi bi-chat-dots-fill fs-6"></i>`;
+
+    const commentInput = document.createElement("input");
+    commentInput.type = "text";
+    commentInput.name = "comment";
+    commentInput.className = "commentInput form-control";
+    commentInput.placeholder = "Give some positive feedback!";
+
+    addCommentForm.appendChild(commentButton);
+    addCommentForm.appendChild(commentInput);
+
+    cardBodyDiv.appendChild(addCommentForm);
 }
 
 /**
@@ -314,8 +329,8 @@ export function postTemplate(postData) {
     const buttonDiv = document.createElement("div");
     buttonDiv.className = "buttonDiv d-flex justify-content-between align-items-center mb-3";
 
-    const commentContainer = document.createElement("div");
-    commentContainer.className = "commentContainer";
+    const commentContainerOuter = document.createElement("div");
+    commentContainerOuter.className = "commentContainerOuter";
 
     if (window.location.pathname.includes("/posts/") || window.location.pathname.includes("/profile/")) {
         createVieWMoreButton(postData, buttonDiv);
@@ -327,31 +342,11 @@ export function postTemplate(postData) {
     createCommentCount(postData, buttonDiv);
     createReactionCount(postData, buttonDiv);
     timePostWasCreated(postData, buttonDiv);
-    createCommentArea(postData, commentContainer);
-
-    const addCommentDiv = document.createElement("div");
-    addCommentDiv.className = "addCommentDiv add-comment input-group shadow-sm mb-1";
-
-    const commentButton = document.createElement("button");
-    commentButton.type = "button";
-    commentButton.id = "button-addon1";
-    commentButton.className = "commentButton btn btn-secondary";
-    commentButton.innerHTML = `<i class="bi bi-chat-dots-fill fs-6"></i>`;
-
-    const commentInput = document.createElement("input");
-    commentInput.type = "text";
-    commentInput.className = "commentInput form-control";
-    commentInput.placeholder = "Give some positive feedback!";
-    commentInput.setAttribute("aria-label", "Example text with button addon");
-    commentInput.setAttribute("aria-describedby", "button-addon1");
-
-    addCommentDiv.appendChild(commentButton);
-    addCommentDiv.appendChild(commentInput);
+    createCommentArea(postData, commentContainerOuter);
 
     cardBodyDiv.appendChild(cardTextParagraph);
     cardBodyDiv.appendChild(buttonDiv);
-    cardBodyDiv.appendChild(commentContainer);
-    cardBodyDiv.appendChild(addCommentDiv);
+    cardBodyDiv.appendChild(commentContainerOuter);
 
     cardDiv.appendChild(cardBodyDiv);
 

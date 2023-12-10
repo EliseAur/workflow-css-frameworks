@@ -25,7 +25,6 @@ export function setRegisterFormListener() {
 
             //Collecting profile data as an object (formData.entries() would give you an array)
             const profile = Object.fromEntries(formData.entries());
-            console.log("This is the users profile info when register", profile);
 
             //Send it to the API
             register(profile);

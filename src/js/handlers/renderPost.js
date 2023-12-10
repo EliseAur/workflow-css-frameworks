@@ -60,11 +60,14 @@ export async function renderPostsInFeed() {
         const profilePosts = postMethods.filterPostDataForProfile(posts);
         templates.renderPostTemplates(profilePosts, container);
         setupSearchFunctionality(profilePosts);
+        handlers.setCreateCommentFormListener();
     } else {
         const goodPosts = postMethods.filterBadPostData(posts);
         templates.renderPostTemplates(goodPosts, container);
         setupSearchFunctionality(goodPosts);
         setupSortDropdown(goodPosts);
+
+        handlers.setCreateCommentFormListener();
     }
 }
 

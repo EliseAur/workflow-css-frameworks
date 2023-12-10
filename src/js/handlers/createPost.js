@@ -21,8 +21,6 @@ export function setCreatePostFormListener() {
             const tagsArray = tagsInput.split(",").map((tag) => tag.trim());
             post.tags = tagsArray;
 
-            console.log("This is a post created", post);
-
             try {
                 const createdPost = await createPost(post);
                 const createdPostId = createdPost.id;

@@ -20,7 +20,6 @@
  * });
  */
 function templateForProfile(profile) {
-    console.log(profile);
     const titleElement = document.querySelector("title");
     if (titleElement) {
         titleElement.textContent = `${profile.name}'s profile | Stronger together`;
