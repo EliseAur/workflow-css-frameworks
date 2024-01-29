@@ -23,7 +23,6 @@ export function setLoginFormListener() {
             const formData = new FormData(form);
 
             const profile = Object.fromEntries(formData.entries());
-            // console.log("This is the users profile info when logging in", profile);
 
             login(profile);
         });
