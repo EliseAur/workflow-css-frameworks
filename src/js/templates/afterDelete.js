@@ -1,3 +1,12 @@
+/**
+ * Clears the post container and displays a success message indicating that the post was deleted.
+ * Adds an element to the post container with a checkmark icon and success message.
+ *
+ * @returns {void}
+ *
+ * @example
+ * afterDeleteTemplate();
+ */
 export function afterDeleteTemplate() {
     postContainer.innerHTML = "";
     const afterDeleteBox = document.createElement("div");
@@ -10,6 +19,16 @@ export function afterDeleteTemplate() {
     return;
 }
 
+
+/**
+ * Clears the post container and displays an error message indicating that the post was not found.
+ * Adds an element to the post container with an error message.
+ *
+ * @returns {void}
+ *
+ * @example
+ * afterDeleteTemplateError();
+ */
 export function afterDeleteTemplateError() {
     postContainer.innerHTML = "";
     const afterDeleteBox = document.createElement("div");
