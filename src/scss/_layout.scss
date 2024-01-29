@@ -18,6 +18,32 @@
 }
 
 .profile__info,
-.profile__follow {
+.profile__follow,
+.profile__bio {
     border-radius: $card-border-radius;
+}
+
+.nameAndTitleDiv {
+    overflow: hidden;
+}
+
+#postContainer .feed-post {
+    margin-top: 30px;
+}
+
+.buttonDiv {
+    grid-template-columns: 94px 94px auto;
+}
+
+.buttonDiv small {
+    grid-column: 4;
+}
+
+.viewMoreButton {
+    max-width: 94px;
+}
+
+.commentCount,
+.reactionsCount {
+    max-width: 50px;
 }

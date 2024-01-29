@@ -3,12 +3,12 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Profile | Stronger together</title>
+        <title>Posts | Stronger together</title>
         <link rel="icon" href="/images/favicon-16x16.png" type="image/png" sizes="16x16" />
         <link rel="stylesheet" href="https://use.typekit.net/yyb1tse.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
         <link rel="stylesheet" href="/dist/css/index.css" />
-        <script src="/src/js/index.js" type="module" defer></script>
+        <script type="module" src="/src/js/index.js" defer></script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -16,7 +16,7 @@
             defer
         ></script>
     </head>
-    <body class="body-profile">
+    <body class="body-feed">
         <header>
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
@@ -35,13 +35,13 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link fs-4 p-1 px-lg-3 my-2 m-lg-2" aria-current="page" href="/posts/index.html">Feed</a>
+                                <a class="nav-link fs-4 p-1 px-lg-3 my-2 m-lg-2 current" aria-current="page" href="#">Feed</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link fs-4 p-1 px-lg-3 my-2 m-lg-2 current" href="#">Profile</a>
+                                <a class="nav-link fs-4 p-1 px-lg-3 my-2 m-lg-2" href="/profile/">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a id="signOutButton" class="nav-link fs-4 p-1 px-lg-3 my-2 m-lg-2" href="../index.html">Sign out</a>
+                                <a id="signOutButton" class="nav-link fs-4 p-1 px-lg-3 my-2 m-lg-2" href="#">Sign out</a>
                             </li>
                         </ul>
                         <form id="search-form" class="d-flex" role="search">
@@ -53,18 +53,29 @@
             </nav>
         </header>
         <main class="row g-0 m-0">
-            <section id="profileDetailsContainer" class="profileDetails">
+            <section class="pb-5 text-center container feed__share">
+                <div class="col-sm-8 col-md-7 col-lg-6 col-xl-5 col-xxl-4 mx-auto py-5">
+                    <h1 class="text-center border-bottom border-primary border-3">Share your latest workout</h1>
+                    <div class="btn-share mt-3">
+                        <h3>Update followers on your latest achievements and get kudos for beeing a beast!</h3>
+                        <a href="/post/create/index.html" class="w-100 btn btn-lg btn-secondary btn-create mt-3">Create post</a>
+                    </div>
+                </div>
             </section>
-            <section class="feed__posts profile__posts container bg-light py-2">
+            <section class="feed__posts container bg-light py-5">
                 <div class="col-sm-8 col-md-7 col-lg-6 col-xl-5 col-xxl-4 mx-auto">
-                    <div class="btn-share pb-5">
-                        <a href="/post/create/" class="w-100 btn btn-lg btn-secondary btn-create mt-3">Create post</a>
+                    <div class="row d-flex flex-column flex-sm-row justify-content-between ms-2 mb-3">
+                        <div class="feed__posts-heading ps-0">
+                            <h1 class="border-bottom border-primary border-3">Latest workouts</h1>
+                        </div>
+                        <select class="text-start fs-6 btn form-select form-control h-100" id="sort-posts">
+                            <option value="default">Latest posts</option>
+                            <option value="authorAZ">Author (A-Z)</option>
+                            <option value="authorZA">Author (Z-A)</option>
+                        </select>
                     </div>
-                    <div class="feed__posts-heading ms-3 mb-3">
-                        <h1 class="border-bottom border-primary border-3">My workouts</h1>
-                    </div>
+                    <!-- List of posts -->
                     <div id="postList" class="col-12"></div>
-                    </div>
                 </div>
             </section>
         </main>

@@ -50,3 +50,13 @@
         border-color: $card-bg;
     }
 }
+
+.help {
+    display: none;
+}
+
+input:invalid + .help {
+    display: block;
+    border-radius: $btn-border-radius;
+    font-size: 14px;
+}
