@@ -14,17 +14,17 @@ import { login } from "../api/auth/login.js";
  * setLoginFormListener();
  */
 export function setLoginFormListener() {
-    const form = document.querySelector("#loginForm");
+  const form = document.querySelector("#loginForm");
 
-    if (form) {
-        form.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const form = event.target;
-            const formData = new FormData(form);
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
 
-            const profile = Object.fromEntries(formData.entries());
+      const profile = Object.fromEntries(formData.entries());
 
-            login(profile);
-        });
-    }
+      login(profile);
+    });
+  }
 }

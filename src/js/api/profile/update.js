@@ -11,27 +11,29 @@ import { authFetch } from "../authFetch.js";
  * @returns {Promise<Object>} - A promise that resolves to the updated profile object.
  */
 export async function updateProfile(profileData) {
-    if (!profileData) {
-        throw new Error("Profile data not found");
-    }
+  if (!profileData) {
+    throw new Error("Profile data not found");
+  }
 
-    const storedUsername = localStorage.getItem("userName");
-    const trimmedUsername = storedUsername ? storedUsername.trim().replace(/^"(.*)"$/, "$1") : null;
+  const storedUsername = localStorage.getItem("userName");
+  const trimmedUsername = storedUsername
+    ? storedUsername.trim().replace(/^"(.*)"$/, "$1")
+    : null;
 
-    if (!trimmedUsername) {
-        console.error("Username not found in local storage.");
-    }
+  if (!trimmedUsername) {
+    console.error("Username not found in local storage.");
+  }
 
-    const action = `/profiles/${trimmedUsername}/media`;
-    const method = "PUT";
+  const action = `/profiles/${trimmedUsername}/media`;
+  const method = "PUT";
 
-    const updateProfileURL = `${API_SOCIAL_URL}${action}`;
+  const updateProfileURL = `${API_SOCIAL_URL}${action}`;
 
-    const response = await authFetch(updateProfileURL, {
-        method,
-        body: JSON.stringify(profileData),
-    });
+  const response = await authFetch(updateProfileURL, {
+    method,
+    body: JSON.stringify(profileData),
+  });
 
-    const jsonResponse = await response.json();
-    return jsonResponse;
+  const jsonResponse = await response.json();
+  return jsonResponse;
 }

@@ -6,7 +6,8 @@
         "build": "sass src/scss:dist/css",
         "watch": "sass src/scss:dist/css --watch",
         "start": "live-server",
-        "dev": "npm-run-all --parallel watch start"
+        "dev": "npm-run-all --parallel watch start",
+        "format": "prettier -w src/**/*.js"
     },
     "repository": {
         "type": "git",

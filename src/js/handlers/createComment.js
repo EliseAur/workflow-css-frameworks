@@ -7,33 +7,33 @@ import * as postMethods from "../api/posts/index.js";
  * @returns {void}
  */
 export function setCreateCommentFormListener() {
-    const commentForms = document.querySelectorAll(".addCommentForm");
+  const commentForms = document.querySelectorAll(".addCommentForm");
 
-    commentForms.forEach((form) => {
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            const formData = new FormData(form);
-            const commentData = Object.fromEntries(formData.entries());
+  commentForms.forEach((form) => {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const commentData = Object.fromEntries(formData.entries());
 
-            // Extract postId from the form's ID
-            const postId = extractPostIdFromFormId(form.id);
+      // Extract postId from the form's ID
+      const postId = extractPostIdFromFormId(form.id);
 
-            // Set postId in the comment object
-            commentData.postId = postId;
+      // Set postId in the comment object
+      commentData.postId = postId;
 
-            try {
-                commentData.body = form.querySelector("input[name='comment']").value;
-                const createdComment = await createCommentOnPost(postId, commentData);
-                updateCommentsArray(postId, createdComment);
-                alert("Your comment was successfully added.");
-                form.querySelector("input[name='comment']").value = "";
-                location.reload();
-            } catch (error) {
-                console.error("Error response from server:", error);
-                alert(`An error occurred while adding the comment: ${error.message}`);
-            }
-        });
+      try {
+        commentData.body = form.querySelector("input[name='comment']").value;
+        const createdComment = await createCommentOnPost(postId, commentData);
+        updateCommentsArray(postId, createdComment);
+        alert("Your comment was successfully added.");
+        form.querySelector("input[name='comment']").value = "";
+        location.reload();
+      } catch (error) {
+        console.error("Error response from server:", error);
+        alert(`An error occurred while adding the comment: ${error.message}`);
+      }
     });
+  });
 }
 
 /**
@@ -43,15 +43,15 @@ export function setCreateCommentFormListener() {
  * @returns {?string} The extracted postId or null if extraction fails.
  */
 function extractPostIdFromFormId(formId) {
-    const postIdPattern = /addCommentForm-(\d+)/;
-    const match = formId.match(postIdPattern);
+  const postIdPattern = /addCommentForm-(\d+)/;
+  const match = formId.match(postIdPattern);
 
-    if (match) {
-        return match[1];
-    } else {
-        console.error("Failed to extract Post ID from form ID:", formId);
-        return null;
-    }
+  if (match) {
+    return match[1];
+  } else {
+    console.error("Failed to extract Post ID from form ID:", formId);
+    return null;
+  }
 }
 
 /**
@@ -63,13 +63,13 @@ function extractPostIdFromFormId(formId) {
  * @returns {Promise<void>}
  */
 async function updateCommentsArray(postId, newComment) {
-    const posts = await postMethods.getPosts();
+  const posts = await postMethods.getPosts();
 
-    const postToUpdate = posts.find((post) => post.id === postId);
+  const postToUpdate = posts.find((post) => post.id === postId);
 
-    if (postToUpdate) {
-        postToUpdate.comments.push(newComment);
-    } else {
-        console.error("Post not found for updating comments array:", postId);
-    }
+  if (postToUpdate) {
+    postToUpdate.comments.push(newComment);
+  } else {
+    console.error("Post not found for updating comments array:", postId);
+  }
 }

@@ -11,11 +11,11 @@
  * createVieWMoreButton(postData, buttonDiv);
  */
 function createVieWMoreButton(postData, buttonDiv) {
-    const viewMoreButton = document.createElement("a");
-    viewMoreButton.href = `/post/index.html?id=${postData.id}`;
-    viewMoreButton.className = "viewMoreButton btn btn-sm btn-secondary w-100";
-    viewMoreButton.textContent = "View more";
-    buttonDiv.appendChild(viewMoreButton);
+  const viewMoreButton = document.createElement("a");
+  viewMoreButton.href = `/post/index.html?id=${postData.id}`;
+  viewMoreButton.className = "viewMoreButton btn btn-sm btn-secondary w-100";
+  viewMoreButton.textContent = "View more";
+  buttonDiv.appendChild(viewMoreButton);
 }
 
 /**
@@ -31,12 +31,12 @@ function createVieWMoreButton(postData, buttonDiv) {
  * createUpdateButton(postData, buttonDiv);
  */
 function createUpdateButton(postData, buttonDiv) {
-    const updateButton = document.createElement("a");
-    updateButton.id = "updatePostButton";
-    updateButton.href = `/post/edit/?id=${postData.id}`;
-    updateButton.className = "btn btn-sm btn-secondary";
-    updateButton.innerHTML = '<i class="bi bi-pencil-square"></i> Update';
-    buttonDiv.appendChild(updateButton);
+  const updateButton = document.createElement("a");
+  updateButton.id = "updatePostButton";
+  updateButton.href = `/post/edit/?id=${postData.id}`;
+  updateButton.className = "btn btn-sm btn-secondary";
+  updateButton.innerHTML = '<i class="bi bi-pencil-square"></i> Update';
+  buttonDiv.appendChild(updateButton);
 }
 
 /**
@@ -50,11 +50,11 @@ function createUpdateButton(postData, buttonDiv) {
  * createRemoveButton(buttonDiv);
  */
 function createRemoveButton(buttonDiv) {
-    const removeButton = document.createElement("button");
-    removeButton.className = "btn btn-sm btn-primary ms-2";
-    removeButton.id = "removePostButton";
-    removeButton.innerHTML = '<i class="bi bi-trash-fill"></i> Remove';
-    buttonDiv.appendChild(removeButton);
+  const removeButton = document.createElement("button");
+  removeButton.className = "btn btn-sm btn-primary ms-2";
+  removeButton.id = "removePostButton";
+  removeButton.innerHTML = '<i class="bi bi-trash-fill"></i> Remove';
+  buttonDiv.appendChild(removeButton);
 }
 
 /**
@@ -69,17 +69,17 @@ function createRemoveButton(buttonDiv) {
  * createCommentCount(postData, buttonDiv);
  */
 function createCommentCount(postData, buttonDiv) {
-    const comments = postData.comments;
-    const commentCount = document.createElement("div");
-    commentCount.className = "commentCount ms-1 p-2 w-25 mb-0";
+  const comments = postData.comments;
+  const commentCount = document.createElement("div");
+  commentCount.className = "commentCount ms-1 p-2 w-25 mb-0";
 
-    if (comments && comments.length > 0) {
-        commentCount.innerHTML = `<i class="bi bi-chat-dots-fill fs-5"></i> ${comments.length}`;
-    } else {
-        commentCount.innerHTML = `<i class="bi bi-chat-dots-fill fs-5"></i> <span class=fs-6> 0 </span>`;
-    }
+  if (comments && comments.length > 0) {
+    commentCount.innerHTML = `<i class="bi bi-chat-dots-fill fs-5"></i> ${comments.length}`;
+  } else {
+    commentCount.innerHTML = `<i class="bi bi-chat-dots-fill fs-5"></i> <span class=fs-6> 0 </span>`;
+  }
 
-    buttonDiv.appendChild(commentCount);
+  buttonDiv.appendChild(commentCount);
 }
 
 /**
@@ -94,17 +94,17 @@ function createCommentCount(postData, buttonDiv) {
  * createReactionCount(postData, buttonDiv);
  */
 function createReactionCount(postData, buttonDiv) {
-    const reactions = postData.reactions;
-    const reactionCount = document.createElement("div");
-    reactionCount.className = "reactionCount ms-1 p-2 w-25 mb-0";
+  const reactions = postData.reactions;
+  const reactionCount = document.createElement("div");
+  reactionCount.className = "reactionCount ms-1 p-2 w-25 mb-0";
 
-    if (reactions && reactions.length > 0) {
-        reactionCount.innerHTML = `<i class="bi bi-heart-fill fs-5"></i> ${reactions.length}`;
-    } else {
-        reactionCount.innerHTML = `<i class="bi bi-heart fs-5"></i> <span class=fs-6> 0 </span>`;
-    }
+  if (reactions && reactions.length > 0) {
+    reactionCount.innerHTML = `<i class="bi bi-heart-fill fs-5"></i> ${reactions.length}`;
+  } else {
+    reactionCount.innerHTML = `<i class="bi bi-heart fs-5"></i> <span class=fs-6> 0 </span>`;
+  }
 
-    buttonDiv.appendChild(reactionCount);
+  buttonDiv.appendChild(reactionCount);
 }
 
 /**
@@ -119,16 +119,16 @@ function createReactionCount(postData, buttonDiv) {
  * timePostWasCreated(postData, buttonDiv);
  */
 function timePostWasCreated(postData, buttonDiv) {
-    const timeSmall = document.createElement("small");
-    timeSmall.className = "timeSmall text-muted text-end ms-auto";
-    const creationDate = postData.created.replaceAll("-", ".");
-    const dateConverted = creationDate
-        .slice(0, creationDate.length - 14)
-        .split(".")
-        .reverse()
-        .join(".");
-    timeSmall.textContent = dateConverted;
-    buttonDiv.appendChild(timeSmall);
+  const timeSmall = document.createElement("small");
+  timeSmall.className = "timeSmall text-muted text-end ms-auto";
+  const creationDate = postData.created.replaceAll("-", ".");
+  const dateConverted = creationDate
+    .slice(0, creationDate.length - 14)
+    .split(".")
+    .reverse()
+    .join(".");
+  timeSmall.textContent = dateConverted;
+  buttonDiv.appendChild(timeSmall);
 }
 
 /**
@@ -142,25 +142,26 @@ function timePostWasCreated(postData, buttonDiv) {
  * createCommentDiv(comment);
  */
 function createCommentDiv(comment) {
-    const commentDiv = document.createElement("div");
-    commentDiv.className = "commentDiv d-flex mb-3";
+  const commentDiv = document.createElement("div");
+  commentDiv.className = "commentDiv d-flex mb-3";
 
-    const commentImageDiv = document.createElement("div");
-    commentImageDiv.className = "commentImageDiv";
+  const commentImageDiv = document.createElement("div");
+  commentImageDiv.className = "commentImageDiv";
 
-    const commentImage = document.createElement("img");
-    commentImage.className = "commentImage card shadow-sm profile-image";
-    commentImage.src = comment.author.avatar || "/images/placeholder-profile-img.jpg";
+  const commentImage = document.createElement("img");
+  commentImage.className = "commentImage card shadow-sm profile-image";
+  commentImage.src =
+    comment.author.avatar || "/images/placeholder-profile-img.jpg";
 
-    const commentParagraph = document.createElement("p");
-    commentParagraph.className = "commentParagraph comment ms-1 p-2 w-100 mb-0";
-    commentParagraph.textContent = comment.body;
+  const commentParagraph = document.createElement("p");
+  commentParagraph.className = "commentParagraph comment ms-1 p-2 w-100 mb-0";
+  commentParagraph.textContent = comment.body;
 
-    commentDiv.appendChild(commentImageDiv);
-    commentImageDiv.appendChild(commentImage);
-    commentDiv.appendChild(commentParagraph);
+  commentDiv.appendChild(commentImageDiv);
+  commentImageDiv.appendChild(commentImage);
+  commentDiv.appendChild(commentParagraph);
 
-    return commentDiv;
+  return commentDiv;
 }
 
 /**
@@ -181,18 +182,20 @@ function createCommentDiv(comment) {
  * const limitedCommentsContainer = createComments(comments, 2);
  */
 function createComments(comments, maxComments = 2) {
-    const commentContainerForComments = document.createElement("div");
-    commentContainerForComments.className = "commentContainerForComments";
+  const commentContainerForComments = document.createElement("div");
+  commentContainerForComments.className = "commentContainerForComments";
 
-    const maxToShow = window.location.pathname.includes("/post/") ? comments.length : Math.min(maxComments, comments.length);
+  const maxToShow = window.location.pathname.includes("/post/")
+    ? comments.length
+    : Math.min(maxComments, comments.length);
 
-    for (let i = 0; i < maxToShow; i++) {
-        const comment = comments[i];
-        const commentDiv = createCommentDiv(comment);
-        commentContainerForComments.appendChild(commentDiv);
-    }
+  for (let i = 0; i < maxToShow; i++) {
+    const comment = comments[i];
+    const commentDiv = createCommentDiv(comment);
+    commentContainerForComments.appendChild(commentDiv);
+  }
 
-    return commentContainerForComments;
+  return commentContainerForComments;
 }
 
 /**
@@ -210,31 +213,32 @@ function createComments(comments, maxComments = 2) {
  * createCommentArea(postData, cardBodyDiv);
  */
 function createCommentArea(postData, cardBodyDiv) {
-    const comments = postData.comments;
-    if (comments && comments.length > 0) {
-        const commentContainerOuter = createComments(comments);
-        cardBodyDiv.appendChild(commentContainerOuter);
-    }
+  const comments = postData.comments;
+  if (comments && comments.length > 0) {
+    const commentContainerOuter = createComments(comments);
+    cardBodyDiv.appendChild(commentContainerOuter);
+  }
 
-    const addCommentForm = document.createElement("form");
-    addCommentForm.className = "addCommentForm add-comment input-group shadow-sm mb-1";
-    addCommentForm.id = `addCommentForm-${postData.id}`;
+  const addCommentForm = document.createElement("form");
+  addCommentForm.className =
+    "addCommentForm add-comment input-group shadow-sm mb-1";
+  addCommentForm.id = `addCommentForm-${postData.id}`;
 
-    const commentButton = document.createElement("button");
-    commentButton.id = "button-addon1";
-    commentButton.className = "commentButton btn btn-secondary";
-    commentButton.innerHTML = `<i class="bi bi-chat-dots-fill fs-6"></i>`;
+  const commentButton = document.createElement("button");
+  commentButton.id = "button-addon1";
+  commentButton.className = "commentButton btn btn-secondary";
+  commentButton.innerHTML = `<i class="bi bi-chat-dots-fill fs-6"></i>`;
 
-    const commentInput = document.createElement("input");
-    commentInput.type = "text";
-    commentInput.name = "comment";
-    commentInput.className = "commentInput form-control";
-    commentInput.placeholder = "Give some positive feedback!";
+  const commentInput = document.createElement("input");
+  commentInput.type = "text";
+  commentInput.name = "comment";
+  commentInput.className = "commentInput form-control";
+  commentInput.placeholder = "Give some positive feedback!";
 
-    addCommentForm.appendChild(commentButton);
-    addCommentForm.appendChild(commentInput);
+  addCommentForm.appendChild(commentButton);
+  addCommentForm.appendChild(commentInput);
 
-    cardBodyDiv.appendChild(addCommentForm);
+  cardBodyDiv.appendChild(addCommentForm);
 }
 
 /**
@@ -260,101 +264,105 @@ function createCommentArea(postData, cardBodyDiv) {
  * document.body.appendChild(post);
  */
 export function postTemplate(postData) {
-    const post = document.createElement("div");
-    post.className = "card feed-post col-12 mb-3 pb-3";
+  const post = document.createElement("div");
+  post.className = "card feed-post col-12 mb-3 pb-3";
 
-    const innerDiv = document.createElement("div");
-    innerDiv.className = "innerDiv col-11 mx-auto pt-3";
+  const innerDiv = document.createElement("div");
+  innerDiv.className = "innerDiv col-11 mx-auto pt-3";
 
-    const dFlexDiv = document.createElement("div");
-    dFlexDiv.className = "dFlexDiv d-flex";
+  const dFlexDiv = document.createElement("div");
+  dFlexDiv.className = "dFlexDiv d-flex";
 
-    const profileImageDiv = document.createElement("div");
-    profileImageDiv.className = "profileImageDiv mx-2 mb-2";
+  const profileImageDiv = document.createElement("div");
+  profileImageDiv.className = "profileImageDiv mx-2 mb-2";
 
-    const profileImage = document.createElement("img");
+  const profileImage = document.createElement("img");
 
-    if (postData.author.avatar) {
-        profileImage.src = postData.author.avatar;
-    } else {
-        profileImage.src = "/images/placeholder-profile-img.jpg";
-    }
+  if (postData.author.avatar) {
+    profileImage.src = postData.author.avatar;
+  } else {
+    profileImage.src = "/images/placeholder-profile-img.jpg";
+  }
 
-    profileImage.alt = "Profile image";
-    profileImage.title = "Profile image";
-    profileImage.width = "100%";
-    profileImage.className = "profileImage card shadow-sm profile-image";
+  profileImage.alt = "Profile image";
+  profileImage.title = "Profile image";
+  profileImage.width = "100%";
+  profileImage.className = "profileImage card shadow-sm profile-image";
 
-    profileImageDiv.appendChild(profileImage);
+  profileImageDiv.appendChild(profileImage);
 
-    const nameAndTitleDiv = document.createElement("div");
-    nameAndTitleDiv.className = "nameAndTitleDiv";
+  const nameAndTitleDiv = document.createElement("div");
+  nameAndTitleDiv.className = "nameAndTitleDiv";
 
-    const nameHeading = document.createElement("h1");
-    nameHeading.className = "nameHeading feed-heading feed-name mb-0 fs-4";
-    nameHeading.textContent = postData.author.name;
+  const nameHeading = document.createElement("h1");
+  nameHeading.className = "nameHeading feed-heading feed-name mb-0 fs-4";
+  nameHeading.textContent = postData.author.name;
 
-    const titleParagraph = document.createElement("p");
-    titleParagraph.className = "titleParagraph feed-heading feed-title fs-2 lh-1";
-    titleParagraph.textContent = postData.title;
+  const titleParagraph = document.createElement("p");
+  titleParagraph.className = "titleParagraph feed-heading feed-title fs-2 lh-1";
+  titleParagraph.textContent = postData.title;
 
-    nameAndTitleDiv.appendChild(nameHeading);
-    nameAndTitleDiv.appendChild(titleParagraph);
+  nameAndTitleDiv.appendChild(nameHeading);
+  nameAndTitleDiv.appendChild(titleParagraph);
 
-    dFlexDiv.appendChild(profileImageDiv);
-    dFlexDiv.appendChild(nameAndTitleDiv);
+  dFlexDiv.appendChild(profileImageDiv);
+  dFlexDiv.appendChild(nameAndTitleDiv);
 
-    innerDiv.appendChild(dFlexDiv);
+  innerDiv.appendChild(dFlexDiv);
 
-    const cardDiv = document.createElement("div");
-    cardDiv.className = "cardDiv card shadow-sm bg-light";
+  const cardDiv = document.createElement("div");
+  cardDiv.className = "cardDiv card shadow-sm bg-light";
 
-    if (postData.media) {
-        const workoutImage = document.createElement("img");
-        workoutImage.src = postData.media;
-        workoutImage.alt = `Image from post with title: ${postData.title}`;
-        workoutImage.title = "Workout post image";
-        workoutImage.className = "workoutImage bd-placeholder-img card-img-top ";
-        workoutImage.width = "100%";
-        cardDiv.appendChild(workoutImage);
-    }
+  if (postData.media) {
+    const workoutImage = document.createElement("img");
+    workoutImage.src = postData.media;
+    workoutImage.alt = `Image from post with title: ${postData.title}`;
+    workoutImage.title = "Workout post image";
+    workoutImage.className = "workoutImage bd-placeholder-img card-img-top ";
+    workoutImage.width = "100%";
+    cardDiv.appendChild(workoutImage);
+  }
 
-    const cardBodyDiv = document.createElement("div");
-    cardBodyDiv.className = "cardBodyDiv card-body";
+  const cardBodyDiv = document.createElement("div");
+  cardBodyDiv.className = "cardBodyDiv card-body";
 
-    const cardTextParagraph = document.createElement("p");
-    cardTextParagraph.className = "cardTextParagraph card-text";
-    cardTextParagraph.textContent = postData.body;
+  const cardTextParagraph = document.createElement("p");
+  cardTextParagraph.className = "cardTextParagraph card-text";
+  cardTextParagraph.textContent = postData.body;
 
-    const buttonDiv = document.createElement("div");
-    buttonDiv.className = "buttonDiv d-flex justify-content-between align-items-center mb-3";
+  const buttonDiv = document.createElement("div");
+  buttonDiv.className =
+    "buttonDiv d-flex justify-content-between align-items-center mb-3";
 
-    const commentContainerOuter = document.createElement("div");
-    commentContainerOuter.className = "commentContainerOuter";
+  const commentContainerOuter = document.createElement("div");
+  commentContainerOuter.className = "commentContainerOuter";
 
-    if (window.location.pathname.includes("/posts/") || window.location.pathname.includes("/profile/")) {
-        createVieWMoreButton(postData, buttonDiv);
-    } else if (window.location.pathname.includes("/post/")) {
-        createUpdateButton(postData, buttonDiv);
-        createRemoveButton(buttonDiv);
-    }
+  if (
+    window.location.pathname.includes("/posts/") ||
+    window.location.pathname.includes("/profile/")
+  ) {
+    createVieWMoreButton(postData, buttonDiv);
+  } else if (window.location.pathname.includes("/post/")) {
+    createUpdateButton(postData, buttonDiv);
+    createRemoveButton(buttonDiv);
+  }
 
-    createCommentCount(postData, buttonDiv);
-    createReactionCount(postData, buttonDiv);
-    timePostWasCreated(postData, buttonDiv);
-    createCommentArea(postData, commentContainerOuter);
+  createCommentCount(postData, buttonDiv);
+  createReactionCount(postData, buttonDiv);
+  timePostWasCreated(postData, buttonDiv);
+  createCommentArea(postData, commentContainerOuter);
 
-    cardBodyDiv.appendChild(cardTextParagraph);
-    cardBodyDiv.appendChild(buttonDiv);
-    cardBodyDiv.appendChild(commentContainerOuter);
+  cardBodyDiv.appendChild(cardTextParagraph);
+  cardBodyDiv.appendChild(buttonDiv);
+  cardBodyDiv.appendChild(commentContainerOuter);
 
-    cardDiv.appendChild(cardBodyDiv);
+  cardDiv.appendChild(cardBodyDiv);
 
-    innerDiv.appendChild(cardDiv);
+  innerDiv.appendChild(cardDiv);
 
-    post.appendChild(innerDiv);
+  post.appendChild(innerDiv);
 
-    return post;
+  return post;
 }
 
 /**
@@ -365,12 +373,14 @@ export function postTemplate(postData) {
  *
  */
 export function renderPostTemplate(postData, parent) {
-    if (!parent || !(parent instanceof Element)) {
-        console.error("Invalid parent element provided for rendering post template.");
-        return;
-    }
+  if (!parent || !(parent instanceof Element)) {
+    console.error(
+      "Invalid parent element provided for rendering post template.",
+    );
+    return;
+  }
 
-    parent.append(postTemplate(postData));
+  parent.append(postTemplate(postData));
 }
 
 /**
@@ -381,10 +391,10 @@ export function renderPostTemplate(postData, parent) {
  *
  */
 export function renderPostTemplates(postDataList, parent) {
-    const postElements = postDataList.map((postData) => {
-        const postElement = postTemplate(postData);
-        return postElement;
-    });
+  const postElements = postDataList.map((postData) => {
+    const postElement = postTemplate(postData);
+    return postElement;
+  });
 
-    parent.append(...postElements);
+  parent.append(...postElements);
 }

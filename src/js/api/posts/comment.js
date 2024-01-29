@@ -5,20 +5,20 @@ const action = "/posts";
 const method = "post";
 
 export async function createCommentOnPost(postId, commentData) {
-    const commentOnPostURL = `${API_SOCIAL_URL}${action}/${postId}/comment`;
+  const commentOnPostURL = `${API_SOCIAL_URL}${action}/${postId}/comment`;
 
-    try {
-        const createdComment = await authFetch(commentOnPostURL, {
-            method,
-            body: JSON.stringify({
-                body: commentData.body,
-                replyToId: commentData.replyToId || null,
-            }),
-        });
+  try {
+    const createdComment = await authFetch(commentOnPostURL, {
+      method,
+      body: JSON.stringify({
+        body: commentData.body,
+        replyToId: commentData.replyToId || null,
+      }),
+    });
 
-        return await createdComment.json();
-    } catch (error) {
-        console.error("Error response from server:", error.response);
-        throw new Error("Failed to create comment");
-    }
+    return await createdComment.json();
+  } catch (error) {
+    console.error("Error response from server:", error.response);
+    throw new Error("Failed to create comment");
+  }
 }

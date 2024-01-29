@@ -1,4 +1,3 @@
-
 /**
  * Saves a key-value pair to the local storage. The value is converted to JSON format before storage.
  *
@@ -10,9 +9,8 @@
  * save("username", "john_doe");
  */
 export function save(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
+  localStorage.setItem(key, JSON.stringify(value));
 }
-
 
 /**
  * Loads a value from the local storage based on the provided key. Parses the stored JSON value.
@@ -24,14 +22,13 @@ export function save(key, value) {
  * const username = load("username");
  */
 export function load(key) {
-    try {
-        const value = localStorage.getItem(key);
-        return JSON.parse(value);
-    } catch {
-        return null;
-    }
+  try {
+    const value = localStorage.getItem(key);
+    return JSON.parse(value);
+  } catch {
+    return null;
+  }
 }
-
 
 /**
  * Removes a key-value pair from the local storage based on the provided key.
@@ -43,5 +40,5 @@ export function load(key) {
  * remove("username");
  */
 export function remove(key) {
-    localStorage.removeItem(key);
+  localStorage.removeItem(key);
 }

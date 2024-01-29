@@ -13,21 +13,21 @@ import { register } from "../api/auth/register.js";
  * setRegisterFormListener();
  */
 export function setRegisterFormListener() {
-    const form = document.querySelector("#registerForm");
+  const form = document.querySelector("#registerForm");
 
-    if (form) {
-        form.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const form = event.target;
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.target;
 
-            // Provide the form data to this constructor
-            const formData = new FormData(form);
+      // Provide the form data to this constructor
+      const formData = new FormData(form);
 
-            //Collecting profile data as an object (formData.entries() would give you an array)
-            const profile = Object.fromEntries(formData.entries());
+      //Collecting profile data as an object (formData.entries() would give you an array)
+      const profile = Object.fromEntries(formData.entries());
 
-            //Send it to the API
-            register(profile);
-        });
-    }
+      //Send it to the API
+      register(profile);
+    });
+  }
 }

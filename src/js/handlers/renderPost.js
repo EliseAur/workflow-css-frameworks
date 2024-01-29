@@ -13,8 +13,8 @@ import * as handlers from "./index.js";
  * console.log(postId); // The post ID or null
  */
 function getPostIdFromUrl() {
-    const urlParams = new URLSearchParams(location.search);
-    return urlParams.get("id");
+  const urlParams = new URLSearchParams(location.search);
+  return urlParams.get("id");
 }
 
 /**
@@ -28,17 +28,17 @@ function getPostIdFromUrl() {
  * await renderPostDetails();
  */
 export async function renderPostDetails() {
-    const postId = getPostIdFromUrl();
-    console.log(postId);
+  const postId = getPostIdFromUrl();
+  console.log(postId);
 
-    if (postId) {
-        const post = await postMethods.getPost(postId);
-        const container = document.querySelector("#postContainer");
-        templates.renderPostTemplate(post, container);
-        handlers.beAbleToRemovePost(post);
-    } else {
-        templates.afterDeleteTemplateError();
-    }
+  if (postId) {
+    const post = await postMethods.getPost(postId);
+    const container = document.querySelector("#postContainer");
+    templates.renderPostTemplate(post, container);
+    handlers.beAbleToRemovePost(post);
+  } else {
+    templates.afterDeleteTemplateError();
+  }
 }
 
 /**
@@ -52,23 +52,26 @@ export async function renderPostDetails() {
  * await renderPostsInFeed();
  */
 export async function renderPostsInFeed() {
-    const posts = await postMethods.getPosts();
-    const container = document.querySelector("#postList");
-    container.innerHTML = "";
+  const posts = await postMethods.getPosts();
+  const container = document.querySelector("#postList");
+  container.innerHTML = "";
 
-    if (window.location.pathname.includes("profile/index.html") || window.location.pathname.includes("profile/")) {
-        const profilePosts = postMethods.filterPostDataForProfile(posts);
-        templates.renderPostTemplates(profilePosts, container);
-        setupSearchFunctionality(profilePosts);
-        handlers.setCreateCommentFormListener();
-    } else {
-        const goodPosts = postMethods.filterBadPostData(posts);
-        templates.renderPostTemplates(goodPosts, container);
-        setupSearchFunctionality(goodPosts);
-        setupSortDropdown(goodPosts);
+  if (
+    window.location.pathname.includes("profile/index.html") ||
+    window.location.pathname.includes("profile/")
+  ) {
+    const profilePosts = postMethods.filterPostDataForProfile(posts);
+    templates.renderPostTemplates(profilePosts, container);
+    setupSearchFunctionality(profilePosts);
+    handlers.setCreateCommentFormListener();
+  } else {
+    const goodPosts = postMethods.filterBadPostData(posts);
+    templates.renderPostTemplates(goodPosts, container);
+    setupSearchFunctionality(goodPosts);
+    setupSortDropdown(goodPosts);
 
-        handlers.setCreateCommentFormListener();
-    }
+    handlers.setCreateCommentFormListener();
+  }
 }
 
 /**
@@ -84,25 +87,25 @@ export async function renderPostsInFeed() {
  * setupSearchFunctionality(posts);
  */
 function setupSearchFunctionality(posts) {
-    const searchInput = document.querySelector("#search-input");
-    const searchForm = document.querySelector("#search-form");
-    const container = document.querySelector("#postList");
+  const searchInput = document.querySelector("#search-input");
+  const searchForm = document.querySelector("#search-form");
+  const container = document.querySelector("#postList");
 
-    searchInput.addEventListener("keyup", handleSearchInput);
-    searchForm.addEventListener("submit", handleSearchSubmit);
+  searchInput.addEventListener("keyup", handleSearchInput);
+  searchForm.addEventListener("submit", handleSearchSubmit);
 
-    function handleSearchInput(event) {
-        const inputValue = event.currentTarget.value.trim().toLowerCase();
-        const searchResults = handlers.search(inputValue, posts);
-        handlers.updateFeedWithSearchResults(searchResults, container);
-    }
+  function handleSearchInput(event) {
+    const inputValue = event.currentTarget.value.trim().toLowerCase();
+    const searchResults = handlers.search(inputValue, posts);
+    handlers.updateFeedWithSearchResults(searchResults, container);
+  }
 
-    function handleSearchSubmit(event) {
-        event.preventDefault();
-        const inputValue = searchInput.value.trim().toLowerCase();
-        const searchResults = handlers.search(inputValue, posts);
-        handlers.updateFeedWithSearchResults(searchResults, container);
-    }
+  function handleSearchSubmit(event) {
+    event.preventDefault();
+    const inputValue = searchInput.value.trim().toLowerCase();
+    const searchResults = handlers.search(inputValue, posts);
+    handlers.updateFeedWithSearchResults(searchResults, container);
+  }
 }
 
 /**
@@ -118,30 +121,30 @@ function setupSearchFunctionality(posts) {
  * setupSortDropdown(posts);
  */
 function setupSortDropdown(posts) {
-    const container = document.querySelector("#postList");
-    const sortDropdown = document.querySelector("#sort-posts");
+  const container = document.querySelector("#postList");
+  const sortDropdown = document.querySelector("#sort-posts");
 
-    if (sortDropdown) {
-        sortDropdown.value = "default";
-        sortDropdown.addEventListener("change", handleSortChange);
+  if (sortDropdown) {
+    sortDropdown.value = "default";
+    sortDropdown.addEventListener("change", handleSortChange);
 
-        function handleSortChange() {
-            const selectedOption = sortDropdown.value;
-            let sortedPosts;
+    function handleSortChange() {
+      const selectedOption = sortDropdown.value;
+      let sortedPosts;
 
-            switch (selectedOption) {
-                case "authorAZ":
-                    sortedPosts = handlers.sortPostsByAuthor(posts, true);
-                    break;
-                case "authorZA":
-                    sortedPosts = handlers.sortPostsByAuthor(posts, false);
-                    break;
-                case "default":
-                default:
-                    sortedPosts = posts;
-            }
+      switch (selectedOption) {
+        case "authorAZ":
+          sortedPosts = handlers.sortPostsByAuthor(posts, true);
+          break;
+        case "authorZA":
+          sortedPosts = handlers.sortPostsByAuthor(posts, false);
+          break;
+        case "default":
+        default:
+          sortedPosts = posts;
+      }
 
-            handlers.updateFeedWithSearchResults(sortedPosts, container);
-        }
+      handlers.updateFeedWithSearchResults(sortedPosts, container);
     }
+  }
 }

@@ -13,12 +13,12 @@ import { getProfile } from "../api/auth/profile.js";
  * await renderProfileDetails();
  */
 export async function renderProfileDetails() {
-    const profile = await getProfile();
+  const profile = await getProfile();
 
-    if (profile) {
-        const container = document.querySelector("#profileDetailsContainer");
-        templates.renderProfileTemplate(profile, container);
-    } else {
-        console.error("Profile data not found");
-    }
+  if (profile) {
+    const container = document.querySelector("#profileDetailsContainer");
+    templates.renderProfileTemplate(profile, container);
+  } else {
+    console.error("Profile data not found");
+  }
 }

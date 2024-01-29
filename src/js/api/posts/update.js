@@ -16,15 +16,15 @@ const method = "put";
  * @returns {Promise<Object>} - A promise that resolves to the updated post object.
  */
 export async function updatePost(postData) {
-    if (!postData.id) {
-        throw new Error("Update requires a postID");
-    }
-    const updatePostURL = `${API_SOCIAL_URL}${action}/${postData.id}`;
+  if (!postData.id) {
+    throw new Error("Update requires a postID");
+  }
+  const updatePostURL = `${API_SOCIAL_URL}${action}/${postData.id}`;
 
-    const response = await authFetch(updatePostURL, {
-        method,
-        body: JSON.stringify(postData),
-    });
+  const response = await authFetch(updatePostURL, {
+    method,
+    body: JSON.stringify(postData),
+  });
 
-    return await response.json();
+  return await response.json();
 }

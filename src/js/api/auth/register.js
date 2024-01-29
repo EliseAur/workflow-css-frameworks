@@ -30,21 +30,21 @@ const method = "post";
  * }
  */
 export async function register(profile) {
-    const registerURL = API_SOCIAL_URL + action;
+  const registerURL = API_SOCIAL_URL + action;
 
-    const body = JSON.stringify(profile);
+  const body = JSON.stringify(profile);
 
-    const response = await fetch(registerURL, {
-        headers: {
-            "Content-type": "application/json",
-        },
-        method,
-        body,
-    });
+  const response = await fetch(registerURL, {
+    headers: {
+      "Content-type": "application/json",
+    },
+    method,
+    body,
+  });
 
-    const result = await response.json();
-    console.log("register result:", result);
+  const result = await response.json();
+  console.log("register result:", result);
 
-    alert("You are now registered");
-    window.location.href = "/index.html";
+  alert("You are now registered");
+  window.location.href = "/index.html";
 }

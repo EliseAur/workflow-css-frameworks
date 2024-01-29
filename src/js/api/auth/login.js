@@ -28,25 +28,25 @@ const method = "post";
  * }
  */
 export async function login(profile) {
-    const loginURL = API_SOCIAL_URL + action;
+  const loginURL = API_SOCIAL_URL + action;
 
-    console.log("This is the login URL:", loginURL);
+  console.log("This is the login URL:", loginURL);
 
-    const body = JSON.stringify(profile);
+  const body = JSON.stringify(profile);
 
-    const response = await fetch(loginURL, {
-        headers: {
-            "Content-type": "application/json",
-        },
-        method,
-        body,
-    });
+  const response = await fetch(loginURL, {
+    headers: {
+      "Content-type": "application/json",
+    },
+    method,
+    body,
+  });
 
-    const { accessToken, ...user } = await response.json();
-    storage.save("token", accessToken);
-    storage.save("profile", user);
-    storage.save("userName", user.name);
+  const { accessToken, ...user } = await response.json();
+  storage.save("token", accessToken);
+  storage.save("profile", user);
+  storage.save("userName", user.name);
 
-    alert("You are now logged in");
-    window.location.href = "/posts/index.html";
+  alert("You are now logged in");
+  window.location.href = "/posts/index.html";
 }

@@ -14,10 +14,10 @@ import * as storage from "../../storage/index.js";
  * }
  */
 export function logout() {
-    storage.remove("token");
-    storage.remove("profile");
-    storage.remove("userName");
+  storage.remove("token");
+  storage.remove("profile");
+  storage.remove("userName");
 
-    alert("You are now logged out");
-    window.location.href = "/index.html";
+  alert("You are now logged out");
+  window.location.href = "/index.html";
 }

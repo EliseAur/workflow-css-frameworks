@@ -14,12 +14,12 @@ import { logout } from "../api/auth/logout.js";
  * setLogoutFormListener();
  */
 export function setLogoutFormListener() {
-    const signOutButton = document.querySelector("#signOutButton");
+  const signOutButton = document.querySelector("#signOutButton");
 
-    if (signOutButton) {
-        signOutButton.addEventListener("click", (event) => {
-            event.preventDefault();
-            logout();
-        });
-    }
+  if (signOutButton) {
+    signOutButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      logout();
+    });
+  }
 }

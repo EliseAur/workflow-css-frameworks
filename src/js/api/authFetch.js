@@ -6,12 +6,12 @@ import { load } from "../storage/index.js";
  * @returns {Object} - An object containing the required headers.
  */
 export function headers() {
-    const token = load("token");
+  const token = load("token");
 
-    return {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-    };
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
 }
 
 /**
@@ -22,8 +22,8 @@ export function headers() {
  * @returns {Promise<Response>} - A promise that resolves to the response from the fetch request.
  */
 export async function authFetch(url, options = {}) {
-    return fetch(url, {
-        ...options,
-        headers: headers(),
-    });
+  return fetch(url, {
+    ...options,
+    headers: headers(),
+  });
 }

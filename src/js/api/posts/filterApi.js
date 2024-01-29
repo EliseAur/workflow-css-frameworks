@@ -6,7 +6,7 @@
  * @returns {boolean} - Returns true if the post title meets the criteria, otherwise false.
  */
 function isPostTitleGood(post) {
-    return post.title.length > 3;
+  return post.title.length > 3;
 }
 
 /**
@@ -17,14 +17,14 @@ function isPostTitleGood(post) {
  * @returns {string|null} - Returns the post author's name if it matches the current user, otherwise null.
  */
 function isPostCreatedByCurrentUser(post) {
-    const user = localStorage.getItem("userName");
+  const user = localStorage.getItem("userName");
 
-    const profileUserName = user ? user.trim().replace(/^"(.*)"$/, "$1") : null;
-    const authorName = post.author.name.trim();
+  const profileUserName = user ? user.trim().replace(/^"(.*)"$/, "$1") : null;
+  const authorName = post.author.name.trim();
 
-    if (profileUserName === authorName) {
-        return post.author.name;
-    }
+  if (profileUserName === authorName) {
+    return post.author.name;
+  }
 }
 
 /**
@@ -34,7 +34,7 @@ function isPostCreatedByCurrentUser(post) {
  * @returns {boolean} - Returns true if the post meets the criteria, otherwise false.
  */
 function doesPostMeetCriterias(post) {
-    return isPostTitleGood(post);
+  return isPostTitleGood(post);
 }
 
 /**
@@ -44,7 +44,7 @@ function doesPostMeetCriterias(post) {
  * @returns {boolean} - Returns true if the post meets the profile criteria, otherwise false.
  */
 function doesPostMeetProfileCriterias(post) {
-    return isPostTitleGood(post) && isPostCreatedByCurrentUser(post);
+  return isPostTitleGood(post) && isPostCreatedByCurrentUser(post);
 }
 
 /**
@@ -54,7 +54,7 @@ function doesPostMeetProfileCriterias(post) {
  * @returns {Object[]} - An array of posts that meet the general criteria.
  */
 export function filterBadPostData(posts) {
-    return posts.filter(doesPostMeetCriterias);
+  return posts.filter(doesPostMeetCriterias);
 }
 
 /**
@@ -64,5 +64,5 @@ export function filterBadPostData(posts) {
  * @returns {Object[]} - An array of posts that meet the profile criteria.
  */
 export function filterPostDataForProfile(posts) {
-    return posts.filter(doesPostMeetProfileCriterias);
+  return posts.filter(doesPostMeetProfileCriterias);
 }

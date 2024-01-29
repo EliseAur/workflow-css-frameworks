@@ -3,10 +3,12 @@ import { authFetch } from "../authFetch.js";
 
 // Retrieve the username from local storage
 const storedUsername = localStorage.getItem("userName");
-const trimmedUsername = storedUsername ? storedUsername.trim().replace(/^"(.*)"$/, "$1") : null;
+const trimmedUsername = storedUsername
+  ? storedUsername.trim().replace(/^"(.*)"$/, "$1")
+  : null;
 
 if (!trimmedUsername) {
-    console.error("Username not found in local storage.");
+  console.error("Username not found in local storage.");
 }
 
 const action = `/profiles/${trimmedUsername}`;
@@ -29,19 +31,19 @@ const method = "get";
  * }
  */
 export async function getProfile() {
-    const baseURL = API_SOCIAL_URL;
-    const getProfileURL = new URL(`${baseURL}${action}`);
-    getProfileURL.searchParams.set("_followers", true);
-    getProfileURL.searchParams.set("_following", true);
-    getProfileURL.searchParams.set("_count", true);
-    getProfileURL.searchParams.set("_posts", true);
+  const baseURL = API_SOCIAL_URL;
+  const getProfileURL = new URL(`${baseURL}${action}`);
+  getProfileURL.searchParams.set("_followers", true);
+  getProfileURL.searchParams.set("_following", true);
+  getProfileURL.searchParams.set("_count", true);
+  getProfileURL.searchParams.set("_posts", true);
 
-    try {
-        const response = await authFetch(getProfileURL.toString());
-        const profile = await response.json();
-        return profile;
-    } catch (error) {
-        console.error("Error fetching profile:", error);
-        throw error;
-    }
+  try {
+    const response = await authFetch(getProfileURL.toString());
+    const profile = await response.json();
+    return profile;
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+    throw error;
+  }
 }

@@ -31,12 +31,12 @@ const method = "post";
  * @returns {Promise<Object>} - A promise that resolves to the created post data.
  */
 export async function createPost(postData) {
-    const createPostURL = API_SOCIAL_URL + action;
+  const createPostURL = API_SOCIAL_URL + action;
 
-    const response = await authFetch(createPostURL, {
-        method,
-        body: JSON.stringify(postData),
-    });
+  const response = await authFetch(createPostURL, {
+    method,
+    body: JSON.stringify(postData),
+  });
 
-    return await response.json();
+  return await response.json();
 }
