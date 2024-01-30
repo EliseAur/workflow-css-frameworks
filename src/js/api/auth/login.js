@@ -48,5 +48,5 @@ export async function login(profile) {
   storage.save("userName", user.name);
 
   alert("You are now logged in");
-  window.location.href = "/posts/index.html";
+  window.location.href = "/workflow-css-frameworks/posts/index.html";
 }
