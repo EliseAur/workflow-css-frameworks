@@ -14,6 +14,7 @@ import { register } from "../api/auth/register.js";
  */
 export function setRegisterFormListener() {
   const form = document.querySelector("#registerForm");
+  console.log("hello 2")
 
   if (form) {
     form.addEventListener("submit", (event) => {
