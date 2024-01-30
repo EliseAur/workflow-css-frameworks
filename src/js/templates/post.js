@@ -12,7 +12,7 @@
  */
 function createVieWMoreButton(postData, buttonDiv) {
   const viewMoreButton = document.createElement("a");
-  viewMoreButton.href = `/post/index.html?id=${postData.id}`;
+  viewMoreButton.href = `../post/index.html?id=${postData.id}`;
   viewMoreButton.className = "viewMoreButton btn btn-sm btn-secondary w-100";
   viewMoreButton.textContent = "View more";
   buttonDiv.appendChild(viewMoreButton);
