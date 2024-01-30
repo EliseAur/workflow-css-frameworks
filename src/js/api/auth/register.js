@@ -46,5 +46,5 @@ export async function register(profile) {
   console.log("register result:", result);
 
   alert("You are now registered");
-  window.location.href = "/index.html";
+  window.location.href = "./index.html";
 }
