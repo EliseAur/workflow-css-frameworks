@@ -50,7 +50,7 @@ export async function setUpdatePostFormListener() {
       container.appendChild(form);
 
       alert("You're post was successfully updated.");
-      location.href = `/post/index.html?id=${id}`;
+      location.href = `../../post/index.html?id=${id}`;
     });
   }
 }
