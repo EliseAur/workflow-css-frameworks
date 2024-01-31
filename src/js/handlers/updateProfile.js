@@ -37,7 +37,7 @@ export async function setUpdateProfileFormListener() {
         try {
           await updateProfile(profile);
           alert("Your profile was successfully updated.");
-          location.href = `/profile/index.html`;
+          location.href = `../profile/index.html`;
         } catch (error) {
           console.error("Error updating profile:", error);
           alert(`Error updating profile: ${error.message} Please try again.`);
