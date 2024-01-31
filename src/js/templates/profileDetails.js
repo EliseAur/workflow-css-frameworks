@@ -149,7 +149,7 @@ function templateForProfile(profile) {
   );
 
   const editContent = document.createElement("div");
-  editContent.innerHTML = `<a class="btn btn-secondary edit-button px-4" href="/profile/edit" >Edit profile </button>`;
+  editContent.innerHTML = `<a class="btn btn-secondary edit-button px-4" href="../profile/edit" >Edit profile </button>`;
 
   editArea.appendChild(editContent);
   followersArea.appendChild(followContent);
