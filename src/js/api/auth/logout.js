@@ -19,5 +19,5 @@ export function logout() {
   storage.remove("userName");
 
   alert("You are now logged out");
-  // window.location.href = "/index.html";
+  window.location.href = "/workflow-css-frameworks/index.html";
 }
