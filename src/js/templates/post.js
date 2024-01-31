@@ -33,7 +33,7 @@ function createVieWMoreButton(postData, buttonDiv) {
 function createUpdateButton(postData, buttonDiv) {
   const updateButton = document.createElement("a");
   updateButton.id = "updatePostButton";
-  updateButton.href = `./post/edit/?id=${postData.id}`;
+  updateButton.href = `../post/edit/?id=${postData.id}`;
   updateButton.className = "btn btn-sm btn-secondary";
   updateButton.innerHTML = '<i class="bi bi-pencil-square"></i> Update';
   buttonDiv.appendChild(updateButton);
