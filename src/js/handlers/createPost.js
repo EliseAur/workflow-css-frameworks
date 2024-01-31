@@ -25,7 +25,7 @@ export function setCreatePostFormListener() {
         const createdPost = await createPost(post);
         const createdPostId = createdPost.id;
         alert("Your post was successfully created.");
-        location.href = `/post/index.html?id=${createdPostId}`;
+        location.href = `../post/index.html?id=${createdPostId}`;
       } catch (error) {
         alert(`An error occurred while creating the post: ${error.message}`);
       }
